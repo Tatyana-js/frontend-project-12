@@ -2,7 +2,7 @@
   "name": "@hexlet/code",
   "version": "1.0.0",
   "description": "[![Actions Status](https://github.com/Tatyana-js/frontend-project-12/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Tatyana-js/frontend-project-12/actions)",
-  "main": "src/index.js",
+  "main": "index.js",
   "scripts": {
     "build": "npm run build --prefix frontend",
     "start": "npx start-server -s ./frontend/build"
