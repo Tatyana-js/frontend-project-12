@@ -5,7 +5,7 @@
   "main": "src/index.js",
   "scripts": {
     "build": "npm run build --prefix frontend",
-    "start": "npx start-server -s ./frontend/dist"
+    "start": "npx start-server -s ./frontend/build"
   },
   "repository": {
     "type": "git",
