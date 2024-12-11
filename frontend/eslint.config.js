@@ -13,6 +13,8 @@ export default [
    }},
   {settings: { react: { version: '18.3' } }},
   pluginReact.configs.flat.recommended,
-  {rules: {semi: "error"},
-}
+  {rules: 
+    {semi: "error",
+    'react/react-in-jsx-scope': 'off'},
+  },
 ];
