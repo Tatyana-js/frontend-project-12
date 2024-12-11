@@ -11,6 +11,7 @@
     "serve": "vite preview"
   },
   "dependencies": {
+    "@fastify/static": "^8.0.3",
     "@reduxjs/toolkit": "^2.4.0",
     "@vitejs/plugin-react": "^4.3.4",
     "axios": "^1.7.9",
@@ -21,6 +22,7 @@
     "formik": "^2.4.6",
     "i18next": "^24.0.5",
     "lodash": "^4.17.21",
+    "lorem-ipsum": "^2.0.8",
     "react": "^18.3.1",
     "react-bootstrap": "^2.10.6",
     "react-bootstrap-icons": "^1.11.5",
