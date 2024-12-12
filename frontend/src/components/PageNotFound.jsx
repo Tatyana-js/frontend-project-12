@@ -1,4 +1,4 @@
-import pageNotFound from '../assets/pageNotFound.jpeg';
+import pageNotFound from '../assets/pageNotFound.jpg';
 
 const PageNotFound = () => (
   <div className="text-center">
