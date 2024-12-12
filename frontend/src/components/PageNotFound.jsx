@@ -2,7 +2,7 @@ import pageNotFound from '../assets/notFound.jpg';
 
 const PageNotFound = () => (
   <div className="text-center">
-    <img src={pageNotFound} alt="Страница не найдена" className="img-fluid h-25" />
+    <img src={pageNotFound} alt="Страница не найдена" className="img-fluid h-15" />
     <h1 className="h4 text-muted">Страница не найдена</h1>
     <p className="text-muted">
       Но вы можете перейти
