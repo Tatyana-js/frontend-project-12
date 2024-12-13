@@ -1,11 +1,18 @@
+import { Container, Navbar } from 'react-bootstrap';
 import Channels from './сhatComponents/Сhannels.jsx';
 
  const MainPage = () => {
 
   return (
-    <div className="container h-100 my-4 overflow-hidden rounded shadow">
+    <Container className="h-100 my-4 overflow-hidden rounded shadow">
       <div className="row h-100 bg-white flex-md-row">
-        <Channels />
+      <Navbar bg="white" expand="lg" className="shadow-sm">
+        <Container>
+          <Navbar.Brand href="/">Hexlet Chat</Navbar.Brand>
+          <button type="button" className="btn btn-primary">Выйти</button>
+        </Container>
+      </Navbar>
+      <Channels />
         {/* <Message /> */}
         {/* <div className="col p-0 h-100">
           <div className="d-flex flex-column h-100">
@@ -30,7 +37,7 @@ import Channels from './сhatComponents/Сhannels.jsx';
           </div>
         </div> */}
       </div>
-    </div>
+    </Container>
   );
  };
   export default MainPage;
