@@ -1,6 +1,7 @@
 import { Container, Row, Col, Nav } from 'react-bootstrap';
 import AddChannelsButton from './сhatComponents/AddCannelsButton.jsx';
 import Channel from './сhatComponents/Сhannels.jsx';
+import MessageField from './сhatComponents/MessageField.jsx';
 
  const MainPage = () => {
 
@@ -14,8 +15,10 @@ import Channel from './сhatComponents/Сhannels.jsx';
         </div>
         <Nav as="ul" id="channels-box" className="flex-column nav-pills nav-fill px-2 mb-3 overflow-auto h-100 d-block">
           <Channel />
-
         </Nav>
+      </Col>
+      <Col className="p-0 h-100">
+        <MessageField />
       </Col>
      </Row>
     </Container>

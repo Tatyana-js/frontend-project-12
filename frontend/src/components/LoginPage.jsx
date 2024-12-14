@@ -1,7 +1,23 @@
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
 import avatarLogin from '../assets/avatarLogin.jpg';
+import { useFormik } from 'formik';
+import * as yup from 'yup';
 
 const LoginPage = () => {
+  const schema = yup.object().shape({
+    username: yup.string().required(),
+    password: yup.string().required(),
+  });
+
+  const formik = useFormik({
+    initialValues: {
+      username: '',
+      password: '',
+    },
+    onSubmit: values => {
+      alert(JSON.stringify(values, null, 2));
+    },
+  });
   return (
     <Container fluid className="h-100">
       <Row className="justify-content-center align-content-center h-100">
@@ -11,7 +27,7 @@ const LoginPage = () => {
               <div className="col-12 col-md-6 d-flex align-items-center justify-content-center">
                 <img src={avatarLogin} className="rounded-circle" alt="Войти" />
               </div>
-              <Form className="col-12 col-md-6 mt-3 mt-md-0">
+              <Form className="col-12 col-md-6 mt-3 mt-md-0" onSubmit={formik.handleSubmit}>
                 <h1 className="text-center mb-4">Войти</h1>
                 <fieldset >
                   <Form.Group className="form-floating mb-3" controlId="username">
@@ -20,8 +36,9 @@ const LoginPage = () => {
                       autoComplete="username" 
                       required 
                       placeholder="Ваш ник" 
-                      id="username" 
-                      value=""
+                      id="username"
+                      onChange={formik.handleChange}
+                      value={formik.values.username}
                       isInvalid={false}
                       // ref={inpit}
                     />
@@ -33,8 +50,9 @@ const LoginPage = () => {
                       autoComplete="current-password" 
                       required 
                       placeholder="Пароль" 
-                      id="password" 
-                      value=""
+                      id="password"
+                      onChange={formik.handleChange} 
+                      value={formik.values.password}
                       isInvalid={false}
                       // ref={inpit}
                     />
