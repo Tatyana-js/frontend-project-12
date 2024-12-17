@@ -10,11 +10,8 @@ const MessageField = () => {
         </p>
         <span className="text-muted">1 сообщение</span>
       </div>
-      <div id="messages-box" className="chat-messages overflow-auto px-5 ">
-        <div className="text-break mb-2">
-        </div>
-        <MessageForm />
-      </div>
+      <div id="messages-box" className="chat-messages overflow-auto px-5 ">{}</div>
+      <MessageForm />
     </div>
   );
 };

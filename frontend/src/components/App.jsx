@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Container, Navbar } from 'react-bootstrap';
 import PageNotFound from './PageNotFound.jsx';
