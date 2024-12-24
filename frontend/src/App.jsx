@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Container, Navbar } from 'react-bootstrap';
 import PageNotFound from './pages/PageNotFound.jsx';
-import MainPage from '../components/MainPage.jsx';
+import MainPage from './pages/MainPage.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 import router from './utils/routes.js';
 
