@@ -1,7 +1,7 @@
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
-import avatarLogin from '../assets/avatarLogin.jpg';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
+import avatarLogin from '../assets/avatarLogin.jpg';
 
 const LoginPage = () => {
   const schema = yup.object().shape({
