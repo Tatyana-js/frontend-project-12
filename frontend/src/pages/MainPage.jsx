@@ -1,7 +1,7 @@
 import { Container, Row, Col, Nav } from 'react-bootstrap';
-import AddChannelsButton from '../сomponents/AddCannelsButton.jsx';
-import Channel from '../сomponents/Сhannels.jsx';
-import MessageField from '../сomponents/MessageField.jsx';
+import AddChannelsButton from '../components/AddCannelsButton.jsx';
+import Channel from '../components/Сhannels.jsx';
+import MessageField from '../components/MessageField.jsx';
 
  const MainPage = () => {
 
