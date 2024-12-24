@@ -8,7 +8,7 @@ const MessageField = () => {
         <p className="m-0">
           <b># general</b>
         </p>
-        <span className="text-muted">1 сообщение</span>
+        <span className="text-muted">0 сообщений</span>
       </div>
       <div id="messages-box" className="chat-messages overflow-auto px-5 ">{}</div>
       <MessageForm />

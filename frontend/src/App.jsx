@@ -1,9 +1,10 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Container, Navbar } from 'react-bootstrap';
-import PageNotFound from './PageNotFound.jsx';
-import MainPage from './MainPage.jsx';
-import LoginPage from './LoginPage.jsx';
+import PageNotFound from './pages/PageNotFound.jsx';
+import MainPage from '../components/MainPage.jsx';
+import LoginPage from './pages/LoginPage.jsx';
+import router from './utils/routes.js';
 
 const App = () => {
   return (
@@ -17,8 +18,8 @@ const App = () => {
         </Navbar>
         <Routes>
           <Route path="*" element={<PageNotFound />} />
-          <Route path="/" element={<MainPage />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route path={router.main} element={<MainPage />} />
+          <Route path={router.login} element={<LoginPage />} />
         </Routes>
       </div>
     </BrowserRouter>

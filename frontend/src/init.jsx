@@ -1,8 +1,8 @@
 import i18next from 'i18next';
 import { I18nextProvider, initReactI18next } from 'react-i18next';
 import { Provider } from 'react-redux';
-import store from './slices/index.js';
-import App from './components/App';
+import store from './store/index.js';
+import App from './App.jsx';
 import resources from './locales/index.js';
 
 const init = async () => {
@@ -21,7 +21,6 @@ const init = async () => {
         <App />
       </I18nextProvider>
     </Provider>
-
   );
 };
 
