@@ -1,4 +1,6 @@
+const apiPath = '/api/v1';
+
 export default {
-  login: '/login',
-  main: '/',
+  loginPath: () => '/login',
+  usersPath: () => [apiPath, 'data'].join('/'),
 };

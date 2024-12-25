@@ -1,23 +1,44 @@
+import axios from 'axios';
+import { useEffect, useRef, useState } from 'react';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
 import { useFormik } from 'formik';
-import * as yup from 'yup';
+import { useTranslation } from 'react-i18next';
 import avatarLogin from '../assets/avatarLogin.jpg';
+import useAuth from '../hooks/index.js';
+import routes from '../utils/routes.js';
+
 
 const LoginPage = () => {
-  const schema = yup.object().shape({
-    username: yup.string().required(),
-    password: yup.string().required(),
-  });
+  const auth = useAuth();
+  const { t } = useTranslation(); 
+  const [authFailed, setAuthFailed] = useState(false);
+  const inputEl = useRef(null);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    inputEl.current.focus();
+  }, []);
 
   const formik = useFormik({
     initialValues: {
       username: '',
       password: '',
     },
-    onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
+    validationSchema: userSchema(t),
+    onSubmit: async (values) => {
+      setAuthFailed(false);
+        try {
+          const res = await axios.post(routes.loginPath(), values);
+          console.log(res);
+          localStorage.setItem('token', res.data.token);
+          auth.logIn();
+        } catch (err) {
+          console.log(err);
+        }
     },
   });
+  
   return (
     <Container fluid className="h-100">
       <Row className="justify-content-center align-content-center h-100">
@@ -28,44 +49,44 @@ const LoginPage = () => {
                 <img src={avatarLogin} className="rounded-circle" alt="Войти" />
               </div>
               <Form className="col-12 col-md-6 mt-3 mt-md-0" onSubmit={formik.handleSubmit}>
-                <h1 className="text-center mb-4">Войти</h1>
+                <h1 className="text-center mb-4">{t('loginForm.title')}</h1>
                 <fieldset >
                   <Form.Group className="form-floating mb-3" controlId="username">
                     <Form.Control 
                       type="text"
                       autoComplete="username" 
                       required 
-                      placeholder="Ваш ник" 
+                      placeholder={t('loginForm.username')} 
                       id="username"
                       onChange={formik.handleChange}
                       value={formik.values.username}
                       isInvalid={false}
-                      // ref={inpit}
+                      ref={inpitEl}
                     />
-                    <Form.Label>Ваш ник</Form.Label>
+                    <Form.Label>{t('loginForm.username')}</Form.Label>
                   </Form.Group>
                   <Form.Group className="form-floating mb-4" controlId="password">
                     <Form.Control
                       type="password"
                       autoComplete="current-password" 
                       required 
-                      placeholder="Пароль" 
+                      placeholder={t('loginForm.password')} 
                       id="password"
                       onChange={formik.handleChange} 
                       value={formik.values.password}
                       isInvalid={false}
-                      // ref={inpit}
+                      ref={inpitEl}
                     />
-                    <Form.Label>Пароль</Form.Label>
+                    <Form.Label>{t('loginForm.password')}</Form.Label>
                   </Form.Group>  
-                    <Button type="submit" variant="outline-primary" className="w-100 mb-3">Войти</Button>
+                    <Button type="submit" variant="outline-primary" className="w-100 mb-3">{t('loginForm.title')}</Button>
                   </fieldset>
               </Form>
             </Card.Body>
             <Card.Footer className="p-4">
               <div className="text-center">
-                <span>Нет аккаунта? </span> 
-                <a href="/signup">Регистрация</a>
+                <span>{t('loginForm.span')} </span> 
+                <a href="/signup">{t('loginForm.signUp')}</a>
               </div>
             </Card.Footer>
           </Card>

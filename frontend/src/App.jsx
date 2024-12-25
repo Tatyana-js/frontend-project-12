@@ -5,6 +5,7 @@ import PageNotFound from './pages/PageNotFound.jsx';
 import MainPage from './pages/MainPage.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 import router from './utils/routes.js';
+import AuthProvider from './context/AuthProvider.jsx';
 
 const App = () => {
   return (
@@ -16,11 +17,14 @@ const App = () => {
             <button type="button" className="btn btn-primary">Выйти</button>
           </Container>
         </Navbar>
-        <Routes>
-          <Route path="*" element={<PageNotFound />} />
-          <Route path={router.main} element={<MainPage />} />
-          <Route path={router.login} element={<LoginPage />} />
-        </Routes>
+        <AuthProvider>
+          <Routes>
+            <Route path={router.main} element={<MainPage />} />
+            <Route path={router.login} element={<LoginPage />} />
+            <Route path="*" element={<PageNotFound />} />
+          </Routes>
+        </AuthProvider>
+
       </div>
     </BrowserRouter>
   );
