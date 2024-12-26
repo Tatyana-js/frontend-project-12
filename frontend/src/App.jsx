@@ -19,8 +19,8 @@ const App = () => {
         </Navbar>
         <AuthProvider>
           <Routes>
-            <Route path={router.main} element={<MainPage />} />
-            <Route path={router.login} element={<LoginPage />} />
+            <Route path={router.mainPath} element={<MainPage />} />
+            <Route path={router.loginPath} element={<LoginPage />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </AuthProvider>
