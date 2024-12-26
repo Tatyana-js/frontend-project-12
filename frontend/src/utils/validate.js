@@ -1,6 +1,6 @@
 import { object, string } from 'yup';
 
-const userSchema = (t) => object().shape({
+const userSchema = () => object().shape({
   username: string().required(),
   password: string().required(),
 });

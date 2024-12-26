@@ -1,12 +1,13 @@
 import axios from 'axios';
 import { useEffect, useRef, useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import avatarLogin from '../assets/avatarLogin.jpg';
-import useAuth from '../hooks/index.js';
+import useAuth from '../hooks/index.jsx';
 import routes from '../utils/routes.js';
+import userSchema from '../utils/validate.js';
 
 
 const LoginPage = () => {
@@ -25,16 +26,24 @@ const LoginPage = () => {
       username: '',
       password: '',
     },
-    validationSchema: userSchema(t),
+    validationSchema: userSchema(),
     onSubmit: async (values) => {
       setAuthFailed(false);
         try {
-          const res = await axios.post(routes.loginPath(), values);
+          const res = await axios.post(routes.loginPath, values);
           console.log(res);
           localStorage.setItem('token', res.data.token);
+          localStorage.setItem('username', res.data.username);
           auth.logIn();
+          navigate(routes.mainPath);
         } catch (err) {
-          console.log(err);
+          formik.setSubmitting(false);
+            if (axios.isAxiosError(err) && err.response.status === 401) {
+            setAuthFailed(true);
+            inputEl.current.select();
+            return;
+          }
+        throw err;
         }
     },
   });
@@ -60,7 +69,7 @@ const LoginPage = () => {
                       id="username"
                       onChange={formik.handleChange}
                       value={formik.values.username}
-                      isInvalid={false}
+                      isInvalid={authFailed}
                       ref={inpitEl}
                     />
                     <Form.Label>{t('loginForm.username')}</Form.Label>
@@ -74,7 +83,7 @@ const LoginPage = () => {
                       id="password"
                       onChange={formik.handleChange} 
                       value={formik.values.password}
-                      isInvalid={false}
+                      isInvalid={authFailed}
                       ref={inpitEl}
                     />
                     <Form.Label>{t('loginForm.password')}</Form.Label>
