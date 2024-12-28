@@ -1,5 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import { Container, Navbar } from 'react-bootstrap';
 import PageNotFound from './pages/PageNotFound.jsx';
 import MainPage from './pages/MainPage.jsx';
@@ -8,6 +9,8 @@ import router from './utils/routes.js';
 import AuthProvider from './context/AuthProvider.jsx';
 
 const App = () => {
+  const { t } = useTranslation();
+  
   return (
     <BrowserRouter>
       <div className="d-flex h-100 flex-column">
