@@ -4,12 +4,13 @@ const MessageForm = () => {
   return (
     <div className="mt-auto px-5 py-3">
       <Form  className="py-1 border rounded-2">
-        <Form.Group className="input-group" hasValidation>
+        <Form.Group className="input-group">
           <Form.Control 
             type="text"
             placeholder="Введите сообщение..." 
             className="border-0 p-0 ps-2" 
-            value="" 
+            value=""
+            // onChange={handleChange}
           />
             <Button type="submit" variant="outline-secondary" disabled readOnly className="btn-group-vertical">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="20" height="20" fill="currentColor">

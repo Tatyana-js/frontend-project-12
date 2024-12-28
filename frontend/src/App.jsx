@@ -6,7 +6,7 @@ import PageNotFound from './pages/PageNotFound.jsx';
 import MainPage from './pages/MainPage.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 import router from './utils/routes.js';
-import AuthProvider from './context/AuthProvider.jsx';
+import AuthProvider, { PrivateRoute } from './context/AuthProvider.jsx';
 
 const App = () => {
   const { t } = useTranslation();
@@ -22,8 +22,12 @@ const App = () => {
         </Navbar>
         <AuthProvider>
           <Routes>
-            <Route path={router.mainPath} element={<MainPage />} />
-            <Route path={router.loginPath} element={<LoginPage />} />
+            <Route path={router.mainPath} element={(
+              <PrivateRoute>
+                <MainPage />
+              </PrivateRoute>)} />
+            <Route path={router.main} element={(<MainPage />)} />
+            <Route path={router.login} element={<LoginPage />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </AuthProvider>

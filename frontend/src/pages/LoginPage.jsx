@@ -34,7 +34,7 @@ const LoginPage = () => {
           console.log(res);
           localStorage.setItem('token', res.data.token);
           auth.logIn();
-          navigate(routes.mainPath);
+          navigate(router.main);
         } catch (err) {
           formik.setSubmitting(false);
             if (axios.isAxiosError(err) && err.response.status === 401) {
@@ -65,7 +65,6 @@ const LoginPage = () => {
                       autoComplete="username" 
                       required 
                       placeholder={t('loginForm.username')} 
-                      id="username"
                       onChange={formik.handleChange}
                       value={formik.values.username}
                       isInvalid={authFailed}
@@ -79,7 +78,6 @@ const LoginPage = () => {
                       autoComplete="current-password" 
                       required 
                       placeholder={t('loginForm.password')} 
-                      id="password"
                       onChange={formik.handleChange} 
                       value={formik.values.password}
                       isInvalid={authFailed}
