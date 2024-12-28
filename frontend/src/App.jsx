@@ -6,7 +6,7 @@ import PageNotFound from './pages/PageNotFound.jsx';
 import MainPage from './pages/MainPage.jsx';
 import LoginPage from './pages/LoginPage.jsx';
 import router from './utils/routes.js';
-import AuthProvider, { PrivateRoute } from './context/AuthProvider.jsx';
+import AuthProvider from './context/AuthProvider.jsx';
 
 const App = () => {
   const { t } = useTranslation();
@@ -14,24 +14,19 @@ const App = () => {
   return (
     <BrowserRouter>
       <div className="d-flex h-100 flex-column">
-        <Navbar bg="white" expand="lg" className="shadow-sm">
-          <Container>
-            <Navbar.Brand href="/">{t('navBar.title')}</Navbar.Brand>
-            <button type="button" className="btn btn-primary">{t('navBar.button')}</button>
-          </Container>
-        </Navbar>
         <AuthProvider>
+          <Navbar bg="white" expand="lg" className="shadow-sm">
+            <Container>
+              <Navbar.Brand href="/">{t('navBar.title')}</Navbar.Brand>
+              <button type="button" className="btn btn-primary">{t('navBar.button')}</button>
+            </Container>
+          </Navbar>
           <Routes>
-            <Route path={router.mainPath} element={(
-              <PrivateRoute>
-                <MainPage />
-              </PrivateRoute>)} />
-            <Route path={router.main} element={(<MainPage />)} />
-            <Route path={router.login} element={<LoginPage />} />
+            <Route path={router.main()} element={<MainPage />} />
+            <Route path={router.login()} element={<LoginPage />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </AuthProvider>
-
       </div>
     </BrowserRouter>
   );

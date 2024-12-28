@@ -1,8 +1,7 @@
-// const apiPath = '/api/v1';
+const apiPath = '/api/v1';
 
 export default {
-  login: '/login',
-  loginPath: '/api/v1/login',
-  mainPath: '/api/v1/channels',
-  main: '/',
+  main: () => '/',
+  login: () => '/login',
+  loginPath: () => [apiPath, 'login'].join('/'),
 };

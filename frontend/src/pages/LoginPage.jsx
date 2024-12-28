@@ -30,11 +30,11 @@ const LoginPage = () => {
     onSubmit: async (values) => {
       setAuthFailed(false);
         try {
-          const res = await axios.post(router.loginPath, values);
+          const res = await axios.post(router.loginPath(), values);
           console.log(res);
           localStorage.setItem('token', res.data.token);
           auth.logIn();
-          navigate(router.main);
+          navigate(router.main());
         } catch (err) {
           formik.setSubmitting(false);
             if (axios.isAxiosError(err) && err.response.status === 401) {

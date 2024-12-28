@@ -1,3 +1,5 @@
+import Channels from "../components/Сhannels";
+
 export default {
     translation: {
       loginForm: {
@@ -11,6 +13,9 @@ export default {
       navBar: {
         title: 'Hexlet Chat',
         button: 'Выйти',
+      },
+      channels: {
+        title: 'Каналы',
       }
       // singUpForm: {
       //   username: ''
