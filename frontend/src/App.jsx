@@ -13,8 +13,8 @@ const App = () => {
       <div className="d-flex h-100 flex-column">
         <Navbar bg="white" expand="lg" className="shadow-sm">
           <Container>
-            <Navbar.Brand href="/">Hexlet Chat</Navbar.Brand>
-            <button type="button" className="btn btn-primary">Выйти</button>
+            <Navbar.Brand href="/">{t('navBar.title')}</Navbar.Brand>
+            <button type="button" className="btn btn-primary">{t('navBar.button')}</button>
           </Container>
         </Navbar>
         <AuthProvider>

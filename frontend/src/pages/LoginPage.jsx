@@ -6,7 +6,7 @@ import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import avatarLogin from '../assets/avatarLogin.jpg';
 import useAuth from '../hooks/index.jsx';
-import routes from '../utils/routes.js';
+import router from '../utils/routes.js';
 import userSchema from '../utils/validate.js';
 
 
@@ -30,10 +30,9 @@ const LoginPage = () => {
     onSubmit: async (values) => {
       setAuthFailed(false);
         try {
-          const res = await axios.post(routes.loginPath, values);
+          const res = await axios.post(router.loginPath, values);
           console.log(res);
           localStorage.setItem('token', res.data.token);
-          localStorage.setItem('username', res.data.username);
           auth.logIn();
           navigate(routes.mainPath);
         } catch (err) {
@@ -70,7 +69,7 @@ const LoginPage = () => {
                       onChange={formik.handleChange}
                       value={formik.values.username}
                       isInvalid={authFailed}
-                      ref={inpitEl}
+                      ref={inputEl}
                     />
                     <Form.Label>{t('loginForm.username')}</Form.Label>
                   </Form.Group>
@@ -84,9 +83,12 @@ const LoginPage = () => {
                       onChange={formik.handleChange} 
                       value={formik.values.password}
                       isInvalid={authFailed}
-                      ref={inpitEl}
+                      ref={inputEl}
                     />
                     <Form.Label>{t('loginForm.password')}</Form.Label>
+                    <Form.Control.Feedback type="invalid">
+                      {t('loginForm.error')}
+                    </Form.Control.Feedback>
                   </Form.Group>  
                     <Button type="submit" variant="outline-primary" className="w-100 mb-3">{t('loginForm.title')}</Button>
                   </fieldset>

@@ -1,7 +1,7 @@
 import { object, string } from 'yup';
 
 const userSchema = () => object().shape({
-  username: string().required(),
+  username: string().min(3).required(),
   password: string().required(),
 });
 

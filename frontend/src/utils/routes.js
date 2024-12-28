@@ -1,6 +1,6 @@
-const apiPath = '/api/v1';
+// const apiPath = '/api/v1';
 
 export default {
-  loginPath: '/login',
+  loginPath: '/api/v1/login',
   mainPath: '/',
 };
