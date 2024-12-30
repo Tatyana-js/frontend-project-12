@@ -1,7 +1,26 @@
+import { Nav } from 'react-bootstrap';
+
+const getAuthHeader = () => {
+  const token = localStorage.getItem('token');
+  if (token) {
+    return { Authorization: `Bearer ${token}`};
+  }
+  return {};
+};
 
 const Channels = () => {
+  useEffect(() => {
+  const fetchContent = async () => {
+    const { data } = await axios.get('/api/v1/channels', { headers: getAuthHeader() });
+    console.log(data);
+    // setChannels(data);
+  };
+
+  fetchContent();
+}, []);
+
 return (
-  <>
+  <Nav as="ul" id="channels-box" className="flex-column nav-pills nav-fill px-2 mb-3 overflow-auto h-100 d-block">
     <li className="nav-item w-100">
       <button type="button" className="w-100 rounded-0 text-start btn btn-secondary">
         <span className="me-1"># </span>
@@ -14,7 +33,7 @@ return (
           random
         </button>
     </li>
-  </>
+  </Nav>
   );
 };
 

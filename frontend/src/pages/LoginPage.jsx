@@ -31,8 +31,9 @@ const LoginPage = () => {
       setAuthFailed(false);
         try {
           const res = await axios.post(router.loginPath(), values);
-          console.log(res);
           localStorage.setItem('token', res.data.token);
+          localStorage.setItem('username', res.data.username);
+          console.log(res);
           auth.logIn();
           navigate(router.main());
         } catch (err) {
