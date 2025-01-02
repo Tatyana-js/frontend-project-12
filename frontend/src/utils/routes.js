@@ -4,4 +4,5 @@ export default {
   main: () => '/',
   login: () => '/login',
   loginPath: () => [apiPath, 'login'].join('/'),
+  channelsPath: () => [apiPath, 'channels'].join('/'),
 };

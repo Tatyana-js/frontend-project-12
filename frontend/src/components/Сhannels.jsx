@@ -1,4 +1,7 @@
 import { Nav } from 'react-bootstrap';
+import axios from 'axios';
+import { useEffect, useState } from 'react';
+import router from '../utils/routes.js';
 
 const getAuthHeader = () => {
   const token = localStorage.getItem('token');
@@ -9,11 +12,12 @@ const getAuthHeader = () => {
 };
 
 const Channels = () => {
+  const [channels, setChannels] = useState([]);
   useEffect(() => {
   const fetchContent = async () => {
-    const { data } = await axios.get('/api/v1/channels', { headers: getAuthHeader() });
+    const { data } = await axios.get(router.channelsPath(), { headers: getAuthHeader() });
     console.log(data);
-    // setChannels(data);
+    setChannels(data);
   };
 
   fetchContent();

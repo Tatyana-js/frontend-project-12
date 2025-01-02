@@ -33,8 +33,8 @@ const LoginPage = () => {
           const res = await axios.post(router.loginPath(), values);
           localStorage.setItem('token', res.data.token);
           localStorage.setItem('username', res.data.username);
-          console.log(res);
-          auth.logIn();
+          auth.logIn(res.data.token, res.data.username);
+          console.log(auth.loggedIn);
           navigate(router.main());
         } catch (err) {
           formik.setSubmitting(false);

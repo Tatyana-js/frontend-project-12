@@ -14,7 +14,7 @@ const init = async () => {
       resources,
       fallbackLng: 'ru',
       interpolation: {
-        escapeValue: false // react already safes from xss
+        escapeValue: false,
       }
     });
 
