@@ -9,7 +9,7 @@ export default defineConfig({
       // Проксируем запросы к API
       '/api': {
         target: 'http://127.0.0.1:5001',
-        // changeOrigin: true,
+        changeOrigin: true,
       },
       // Проксируем WebSocket соединения
       '/socket.io': {

@@ -6,6 +6,8 @@ import useAuth from '../hooks/index.jsx';
 // eslint-disable-next-line react/prop-types
 const AuthProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(!!localStorage.getItem('token'));
+  
+  const token = localStorage.getItem('token');
 
   const logIn = (token, username) => {
     localStorage.setItem('token', token);
@@ -18,6 +20,7 @@ const AuthProvider = ({ children }) => {
     localStorage.removeItem('username');
     setLoggedIn(false);
   };
+
   useEffect(() => {
     const token = localStorage.getItem('token');
     if (token) {
@@ -26,7 +29,7 @@ const AuthProvider = ({ children }) => {
   }, []);
   
   return (
-    <AuthContext.Provider value={{ loggedIn, logIn, logOut }}>
+    <AuthContext.Provider value={{ loggedIn, logIn, logOut, token }}>
       {children}
     </AuthContext.Provider>
   );
