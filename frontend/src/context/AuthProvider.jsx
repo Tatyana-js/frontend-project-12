@@ -6,7 +6,7 @@ import useAuth from '../hooks/index.jsx';
 // eslint-disable-next-line react/prop-types
 const AuthProvider = ({ children }) => {
   const [loggedIn, setLoggedIn] = useState(!!localStorage.getItem('token'));
-  
+
   const token = localStorage.getItem('token');
 
   const logIn = (token, username) => {

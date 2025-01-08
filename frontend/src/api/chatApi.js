@@ -1,8 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-
-export const channelsApi = createApi({
-  reducerPath: 'channels',
+export const chatApi = createApi({
+  reducerPath: 'chatApi',
   baseQuery: fetchBaseQuery({ 
     baseUrl: '/api/v1',
     prepareHeaders: (headers) => {
@@ -17,9 +16,13 @@ export const channelsApi = createApi({
     getChannels: builder.query({
       query: () => 'channels',
     }),
+    getMessages: builder.query({
+      query: () => 'messages',
+    })
   }),
 });
 
 export const {
   useGetChannelsQuery,
-} = channelsApi;
+  useGetMessagesQuery,
+} = chatApi;

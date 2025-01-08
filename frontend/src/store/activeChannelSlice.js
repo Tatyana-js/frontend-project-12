@@ -1,7 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+const defaultChannel = {
+  id: '1', 
+  name: 'general', 
+  removable: false,
+};
+
 const initialState = {
-  currentChannel: 1,
+  currentChannel: defaultChannel,
 };
 
 const activeChannelSlice = createSlice({
@@ -9,7 +15,8 @@ const activeChannelSlice = createSlice({
   initialState,
   reducers: {
     selectActiveTab: (state, { payload }) => {
-      state.activeChannel = payload;
+      state.currentChannel = payload;
+      // console.log(payload);
     },
   },
 });

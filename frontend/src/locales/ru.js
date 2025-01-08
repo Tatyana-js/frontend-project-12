@@ -16,6 +16,11 @@ export default {
       },
       channels: {
         title: 'Каналы',
+      },
+      countMessages: {
+        messages_one: '{{count}} сообщение',
+        messages_fwe: '{{count}} сообщения',
+        messages_many: '{{count}} сообщений',
       }
       // singUpForm: {
       //   username: ''

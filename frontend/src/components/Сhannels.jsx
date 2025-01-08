@@ -1,5 +1,5 @@
 import { Nav, Button } from 'react-bootstrap';
-import { useGetChannelsQuery } from '../api/channelsApi.js';
+import { useGetChannelsQuery } from '../api/chatApi.js';
 import { useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { selectActiveTab, activeChannelSelector } from '../store/activeChannelSlice.js';
@@ -11,10 +11,14 @@ const Channels = () => {
   const channelsRef = useRef(null);
   const activeChannel = useSelector(activeChannelSelector);
   useEffect(() => {
+    try {
+      if (isLoading) {
 
+      }
+    } catch (err) {
+      console.log(err);
+    }
   }, []);
-  console.log(channels);
-console.log(activeChannel);
 
 return (
   <Nav 
@@ -26,11 +30,11 @@ return (
     {channels?.map((channel) => {
      return (
       <Nav.Item as="li" key={channel.id} className="w-100">
-        <Button  
+        <Button
           type="button" 
           className="w-100 rounded-0 text-start"
-          variant={channel.id === activeChannel ? "secondary" : ""}
-          onClick={() => dispatch(selectActiveTab({ id: channel.id }))}
+          variant={channel.id === activeChannel.id ? "secondary" : ""}
+          onClick={() => dispatch(selectActiveTab(channel))}
         >
           <span className="me-1"># </span>
            {channel.name}
