@@ -21,6 +21,12 @@ export default {
         messages_one: '{{count}} сообщение',
         messages_fwe: '{{count}} сообщения',
         messages_many: '{{count}} сообщений',
+      },
+      loading: 'Loading...',
+      formMesseges: {
+        placeholder: 'Введите сообщение...',
+        button: 'Отправить',
+        input: 'Новое сообщение',
       }
       // singUpForm: {
       //   username: ''

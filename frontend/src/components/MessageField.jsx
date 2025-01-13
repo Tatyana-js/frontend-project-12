@@ -1,17 +1,20 @@
-import { useSelector, useDispatch } from 'react-redux';
+import { useRef } from 'react';
+import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { activeChannelSelector } from '../store/activeChannelSlice.js';
 import MessageForm from './MessageForm.jsx';
-import { useGetMessagesQuery } from '../api/chatApi.js';
+import useAuth from '../hooks/index.jsx';
+import { useGetMessagesQuery, useAddMessageMutation } from '../api/chatApi.js';
 
 const MessageField = () => {
-    const { t } = useTranslation(); 
-  const { data, error, isLoading, refetch } =  useGetMessagesQuery();
+  const { t } = useTranslation(); 
+  const { data: messages = [], error, isLoading, refetch } =  useGetMessagesQuery();
+  const [ addMessage ] = useAddMessageMutation();
   const activeChannel = useSelector(activeChannelSelector);
-  const dispatch = useDispatch();
-  const messages = data;
+  const messagesEl = useRef(null);
+  const { username } = useAuth();
   const countMessages = messages?.length || 0;
-  console.log(messages)
+  console.log(messages);
 
   return (
     <div className="d-flex flex-column h-100">
@@ -23,8 +26,19 @@ const MessageField = () => {
           {t('countMessages.messages', { count: countMessages })}
         </span>
       </div>
-      <div id="messages-box" className="chat-messages overflow-auto px-5 ">{messages}</div>
-      <MessageForm />
+      <div id="messages-box" className="chat-messages overflow-auto px-5 "ref={messagesEl}>
+        {messages?.map(({ id, username, body}) => (
+          <div key={id} className='text-break mb-2'>
+            <b>{username}</b>
+            {`: ${body}`}
+          </div>
+        ))}
+      </div>
+      <MessageForm 
+        activeChannelId={activeChannel.id}
+        username={username}
+        addMessage={addMessage}
+      />
     </div>
   );
 };

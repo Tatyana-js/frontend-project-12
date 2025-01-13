@@ -5,7 +5,6 @@ import activeChannelReducer from './activeChannelSlice.js';
 const rootReducer = combineReducers({
   [chatApi.reducerPath]: chatApi.reducer,
   activeChannel: activeChannelReducer,
-  // messages: mesagesReducer,
 });
 
 const store = configureStore ({

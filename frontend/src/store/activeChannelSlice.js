@@ -16,7 +16,6 @@ const activeChannelSlice = createSlice({
   reducers: {
     selectActiveTab: (state, { payload }) => {
       state.currentChannel = payload;
-      // console.log(payload);
     },
   },
 });
