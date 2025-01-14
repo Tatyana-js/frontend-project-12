@@ -12,9 +12,9 @@ const MessageField = () => {
   const [ addMessage ] = useAddMessageMutation();
   const activeChannel = useSelector(activeChannelSelector);
   const messagesEl = useRef(null);
+  const messagesOfChannel = messages.filter((message) => message.channelId === activeChannel.id);
   const { username } = useAuth();
-  const countMessages = messages?.length || 0;
-  console.log(messages);
+  const countMessages = messagesOfChannel?.length || 0;
 
   return (
     <div className="d-flex flex-column h-100">
@@ -27,7 +27,7 @@ const MessageField = () => {
         </span>
       </div>
       <div id="messages-box" className="chat-messages overflow-auto px-5 "ref={messagesEl}>
-        {messages?.map(({ id, username, body}) => (
+        {messagesOfChannel?.map(({ id, username, body}) => (
           <div key={id} className='text-break mb-2'>
             <b>{username}</b>
             {`: ${body}`}

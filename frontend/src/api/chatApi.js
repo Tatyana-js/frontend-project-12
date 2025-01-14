@@ -1,4 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import { io } from 'socket.io-client';
+
+const socket = io();
 
 export const chatApi = createApi({
   reducerPath: 'chatApi',
@@ -43,6 +46,18 @@ export const chatApi = createApi({
     }),
     getMessages: builder.query({ // Сообщения
       query: () => '/messages',
+       onCacheEntryAdded: async ( event, { updateCachedData, cacheDataLoaded, cacheEntryRemoved }) => {
+        await cacheDataLoaded;
+        console.log(cacheDataLoaded);
+        const listener = () => {
+          if (event === 'addMessage') {
+            updateCachedData((draft) => draft.push(data));
+          }
+        };
+        socket.on('addMessage', listener);
+        await cacheEntryRemoved;
+        socket.close();
+        },
       providesTags: ['Messages'],
     }),
     addMessage: builder.mutation ({

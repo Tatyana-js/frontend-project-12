@@ -18,7 +18,7 @@ const MessageForm = ({ activeChannelId, username, addMessage }) => {
         setFieldValue('body', newMessege.body);
         formik.resetForm();
       } catch (error) {
-
+          console.log(error);
       }
     },
   });
