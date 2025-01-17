@@ -1,9 +1,11 @@
 import i18next from 'i18next';
+import { io } from 'socket.io-client';
 import { initReactI18next } from 'react-i18next';
 import { Provider } from 'react-redux';
 import store from './store/index.js';
 import App from './App.jsx';
 import resources from './locales/index.js';
+import { useGetMessagesQuery } from './api/chatApi.js';
 
 const init = async () => {
   const i18n = i18next.createInstance();
@@ -17,6 +19,13 @@ const init = async () => {
         escapeValue: false,
       }
     });
+
+const socket = io();
+const { data: messages = []} =  useGetMessagesQuery();
+socket.on('newMessage', (payload) =>  {
+  console.log(payload)
+  messages.push(payload);
+});
 
   return (
     <Provider store={store}>
