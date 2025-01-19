@@ -1,13 +1,15 @@
 import i18next from 'i18next';
+import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import { chatApi } from './api/chatApi.js';
+import activeChannelReducer from './slices/activeChannelSlice.js';
 import { io } from 'socket.io-client';
 import { initReactI18next } from 'react-i18next';
 import { Provider } from 'react-redux';
-import store from './store/index.js';
 import App from './App.jsx';
 import resources from './locales/index.js';
-import { useGetMessagesQuery } from './api/chatApi.js';
 
 const init = async () => {
+
   const i18n = i18next.createInstance();
 
   await i18n
@@ -20,12 +22,30 @@ const init = async () => {
       }
     });
 
-const socket = io();
-const { data: messages = []} =  useGetMessagesQuery();
-socket.on('newMessage', (payload) =>  {
-  console.log(payload)
-  messages.push(payload);
-});
+  const rootReducer = combineReducers({
+    [chatApi.reducerPath]: chatApi.reducer,
+    activeChannel: activeChannelReducer,
+  });
+    
+  const store = configureStore ({
+    reducer: rootReducer,
+    middleware: (getDefaultMiddleware) =>
+      getDefaultMiddleware().concat(chatApi.middleware),
+  });
+
+  const socket = io();
+
+  socket.on('newMessage', (payload) => {
+    store.dispatch(chatApi.util.updateQueryData('getMessages', undefined, (draft) => {
+      draft.push({ payload });
+      console.log(payload); 
+      }));
+    });
+  
+  // messages.push(payload);
+
+  // socket.on('renameMessage', (payload) => {
+  // })
 
   return (
     <Provider store={store}>

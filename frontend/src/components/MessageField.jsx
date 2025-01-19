@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { activeChannelSelector } from '../store/activeChannelSlice.js';
+import { activeChannelSelector } from '../slices/activeChannelSlice.js';
 import MessageForm from './MessageForm.jsx';
 import useAuth from '../hooks/index.jsx';
 import { useGetMessagesQuery, useAddMessageMutation } from '../api/chatApi.js';

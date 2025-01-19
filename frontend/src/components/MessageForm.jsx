@@ -13,7 +13,7 @@ const MessageForm = ({ activeChannelId, username, addMessage }) => {
     onSubmit: async (values, { setFieldValue }) => {
       try {
         const newMessege = { body: values.body, channelId: activeChannelId, username };
-        console.log(newMessege)
+        // console.log(newMessege)
         await addMessage(newMessege);
         setFieldValue('body', newMessege.body);
         formik.resetForm();
