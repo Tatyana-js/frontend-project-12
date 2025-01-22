@@ -2,6 +2,7 @@ import i18next from 'i18next';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { chatApi } from './api/chatApi.js';
 import activeChannelReducer from './slices/activeChannelSlice.js';
+import modalsReducer from './slices/modalsSlice.js';
 import { io } from 'socket.io-client';
 import { initReactI18next } from 'react-i18next';
 import { Provider } from 'react-redux';
@@ -25,6 +26,7 @@ const init = async () => {
   const rootReducer = combineReducers({
     [chatApi.reducerPath]: chatApi.reducer,
     activeChannel: activeChannelReducer,
+    modals: modalsReducer,
   });
     
   const store = configureStore ({
