@@ -1,4 +1,5 @@
 import i18next from 'i18next';
+import { I18nextProvider } from 'react-i18next';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { chatApi } from './api/chatApi.js';
 import activeChannelReducer from './slices/activeChannelSlice.js';
@@ -10,7 +11,6 @@ import App from './App.jsx';
 import resources from './locales/index.js';
 
 const init = async () => {
-
   const i18n = i18next.createInstance();
 
   await i18n
@@ -40,19 +40,19 @@ const init = async () => {
   socket.on('newMessage', (payload) => {
     store.dispatch(chatApi.util.updateQueryData('getMessages', undefined, (draft) => {
       draft.push({ payload });
-      console.log(payload); 
       }));
     });
-  
-  // messages.push(payload);
 
   // socket.on('renameMessage', (payload) => {
   // })
 
   return (
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <I18nextProvider i18n={i18n}>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </I18nextProvider>
+
   );
 };
 

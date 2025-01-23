@@ -25,16 +25,14 @@ const Component = ({ onHide, show }) => {
   }, []);
 
 return (
-    <Modal.Dialog  show={show} dialogClassName="modal-dialog-centered">
-      <Modal.Header>
+    <Modal.Dialog  show dialogClassName="modal-dialog-centered">
+      <Modal.Header closeButton onHide={onHide}>
         <Modal.Title className="h4">Add</Modal.Title>
-        <Button type="button" className="btn-close" aria-label="Close" onClick={onHide}></Button>
       </Modal.Header>
         <Modal.Body>
           <Form onSubmit={formik.handleSubmit}>
             <FormGroup>
             <FormControl
-              id="taskName"
               data-testid="input-body" 
               name="taskName" 
               required 

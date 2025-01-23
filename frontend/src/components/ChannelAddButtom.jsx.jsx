@@ -1,17 +1,6 @@
 import { Button } from 'react-bootstrap';
-import { useDispatch, useSelector } from 'react-redux';
-import { openModal, closeModal } from '../slices/modalsSlice';
-import Component from './Modal';
 
-const ButtonPlus = () => {
-  const dispatch = useDispatch();
-  const modals = useSelector((state) => state.modals);
-  console.log(modals)
-  const hideModal = () =>  dispatch(closeModal());
-
-  const showModal = () => {
-    dispatch(openModal({ type: 'addChannel'}));
-  };
+const ButtonPlus = ({ showModal }) => {
 
   return (
     <>
@@ -29,7 +18,6 @@ const ButtonPlus = () => {
         </svg>
         <span className="visually-hidden">+</span>
       </Button>
-      {modals.type === 'addChannel' && (<Component onHide={hideModal} show={showModal}/>)} 
     </>
 
 
