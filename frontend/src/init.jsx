@@ -42,7 +42,11 @@ const init = async () => {
       draft.push({ payload });
       }));
     });
-
+    socket.on('newChannel', (payload) => {
+      store.dispatch(chatApi.util.updateQueryData('getChannels', undefined, (draft) => {
+        draft.push({ payload });
+        }));
+      });
   // socket.on('renameMessage', (payload) => {
   // })
 

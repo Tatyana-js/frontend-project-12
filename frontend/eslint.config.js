@@ -15,6 +15,7 @@ export default [
   pluginReact.configs.flat.recommended,
   {rules: 
     {semi: "error",
-    'react/react-in-jsx-scope': 'off'},
+    'react/react-in-jsx-scope': 'off',
+    'react/prop-types': 'off'},
   },
 ];

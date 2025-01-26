@@ -1,3 +1,4 @@
+import { Dropdown } from "react-bootstrap";
 import Channels from "../components/Сhannels";
 
 export default {
@@ -16,6 +17,18 @@ export default {
       },
       channels: {
         title: 'Каналы',
+        setupChannel: 'Управление каналом',
+        dropdownButtonRemove: 'Удалить',
+        dropdownButtonRename: 'Переименовать',
+      },
+      modal: {
+        name: 'Имя канала',
+        addButton: 'Добавить канал',
+        cancel: 'Отменить',
+        send: 'Отправить',
+        removeChannel: 'Удалить канал',
+        removeText: 'Уверены?',
+        removeButton: 'Удалить',
       },
       countMessages: {
         messages_one: '{{count}} сообщение',

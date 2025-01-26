@@ -20,6 +20,5 @@ const modalsSlice = createSlice({
   },
 });
 
-// export const activeChannelSelector = (state) => state.activeChannel.currentChannel;
 export const { openModal, closeModal } = modalsSlice.actions;
 export default modalsSlice.reducer;
