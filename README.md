@@ -3,3 +3,6 @@
 
 ### link to the site:
 (https://github.com/Tatyana-js/frontend-project-12)
+
+### demo
+(https://frontend-chat-ru.hexlet.app/)

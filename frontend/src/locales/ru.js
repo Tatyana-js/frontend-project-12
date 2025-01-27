@@ -29,6 +29,10 @@ export default {
         removeChannel: 'Удалить канал',
         removeText: 'Уверены?',
         removeButton: 'Удалить',
+        schema: {
+          required: 'Обязательное поле',
+          minMax: 'От 3 до 20 символов',
+        }
       },
       countMessages: {
         messages_one: '{{count}} сообщение',

@@ -40,7 +40,8 @@ return (
       {channels.map((channel) => {
       return (
           <Nav.Item as="li" key={channel.id} className="w-100">
-            {!channel.removable && (<Button
+            {!channel.removable && 
+            <Button
               type="button" 
               className="w-100 rounded-0 text-start"
               variant={variant(channel)}
@@ -48,8 +49,8 @@ return (
             >
               <span className="me-1"># </span>
               {channel.name}
-            </Button>)}
-            {channel.removable && (
+            </Button>}
+            {channel.removable && 
               <Dropdown role="group" className='d-flex btn-group'>
                 <Button className='w-100 rounded-0 text-start text-truncate' variant={variant(channel)} onClick={() => dispatch(selectActiveTab(channel))}>
                   <span className="me-1"># </span>
@@ -62,7 +63,7 @@ return (
                   <Dropdown.Item role="button" onClick={() => showModal('removing', channel)}>{t('channels.dropdownButtonRemove')}</Dropdown.Item>
                   <Dropdown.Item role="button">{t('channels.dropdownButtonRename')}</Dropdown.Item>
                 </Dropdown.Menu>
-            </Dropdown>)}
+              </Dropdown>}
           </Nav.Item> 
           );
         }

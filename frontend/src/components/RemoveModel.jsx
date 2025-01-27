@@ -1,22 +1,20 @@
 import { Modal, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useRemoveChannelMutation } from '../api/chatApi';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { selectActiveTab, defaultChannel } from '../slices/activeChannelSlice.js';
 
 const RemoveChannel = ({ onHide }) => {
   const { t } = useTranslation();
   const [ removeChannel ] = useRemoveChannelMutation();
+  const dispatch = useDispatch();
   const channel = useSelector((state) => state.modals.channel);
-  // const activeChannel = useSelector(activeChannelSelector);
 
   const handleRemove = async (id) => {
     try {
       await removeChannel(id);
-            onHide();
-      selectActiveTab(defaultChannel);
-      console.log(defaultChannel);
-
+      onHide();
+      dispatch(selectActiveTab(defaultChannel));
     } catch (err) {
       console.log(err);
     }
