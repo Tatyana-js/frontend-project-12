@@ -22,7 +22,6 @@ const AddChannel = ({ onHide }) => {
         const response = await addChannel({name: values.channelName});
         dispatch(selectActiveTab(response.data));
         onHide();
-        console.log(modals);
       } catch (error) {
         console.log(error);
       }

@@ -48,8 +48,8 @@ const init = async () => {
         }));
       });
     socket.on('removeChannel', ({ payload } ) => {
-      store.dispatch(chatApi.util.updateQueryData('getChannels', undefined, (draft) => {
-        draft.filter((channel) => channel.id !== payload.id);
+      store.dispatch(chatApi.util.updateQueryData('getChannels', undefined, (draft, id) => {
+        draft.filter((channel) => channel.id !== payload);
         }));
       });
   // socket.on('renameMessage', (payload) => {

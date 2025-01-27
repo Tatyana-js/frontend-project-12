@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-const defaultChannel = {
+export const defaultChannel = {
   id: '1', 
   name: 'general', 
   removable: false,
