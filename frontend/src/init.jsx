@@ -47,6 +47,11 @@ const init = async () => {
         draft.push({ payload });
         }));
       });
+    socket.on('removeChannel', ({ payload } ) => {
+      store.dispatch(chatApi.util.updateQueryData('getChannels', undefined, (draft) => {
+        draft.filter((channel) => channel.id !== payload.id);
+        }));
+      });
   // socket.on('renameMessage', (payload) => {
   // })
 

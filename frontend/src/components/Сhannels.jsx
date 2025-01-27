@@ -59,7 +59,7 @@ return (
                   <span className="visually-hidden">{t('channels.setupChannel')}</span>
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
-                  <Dropdown.Item role="button"onClick={() => showModal('removing', activeChannel)}>{t('channels.dropdownButtonRemove')}</Dropdown.Item>
+                  <Dropdown.Item role="button" onClick={() => showModal('removing', activeChannel)}>{t('channels.dropdownButtonRemove')}</Dropdown.Item>
                   <Dropdown.Item role="button">{t('channels.dropdownButtonRename')}</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>)}

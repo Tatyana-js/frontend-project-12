@@ -17,12 +17,12 @@ const AddChannel = ({ onHide }) => {
     initialValues: {
       channelName: '',
     },
-    onSubmit: async (values, ) => {
+    onSubmit: async (values) => {
       try {
         const response = await addChannel({name: values.channelName});
         dispatch(selectActiveTab(response.data));
         onHide();
-        console.log(modals)
+        console.log(modals);
       } catch (error) {
         console.log(error);
       }
@@ -55,7 +55,7 @@ return (
               <Form.Label className='visually-hidden' htmlFor='channelName'>{t('modal.name')}</Form.Label>
               <Form.Control.Feedback type="invalid"></Form.Control.Feedback>
               <div className='d-flex justify-content-end'>
-                <Button type="button" className='me-2' variant="secondary" onHide={onHide}>{t('modal.cancel')}</Button> 
+                <Button type="button" className='me-2' variant="secondary" onClick={onHide}>{t('modal.cancel')}</Button> 
                 <Button type="submit" variant="primary">{t('modal.send')}</Button> 
               </div>
             </FormGroup>
