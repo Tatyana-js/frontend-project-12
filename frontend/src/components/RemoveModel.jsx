@@ -2,6 +2,7 @@ import { Modal, Button } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useRemoveChannelMutation } from '../api/chatApi';
 import { useSelector, useDispatch } from 'react-redux';
+import { toast } from 'react-toastify';
 import { selectActiveTab, defaultChannel } from '../slices/activeChannelSlice.js';
 
 const RemoveChannel = ({ onHide }) => {
@@ -14,6 +15,9 @@ const RemoveChannel = ({ onHide }) => {
     try {
       await removeChannel(id);
       dispatch(selectActiveTab(defaultChannel));
+      toast.success(t('channels.delete'), {
+        position: 'top-right',
+      });
       onHide();
     } catch (err) {
       console.log(err);

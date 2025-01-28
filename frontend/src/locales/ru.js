@@ -20,6 +20,9 @@ export default {
         setupChannel: 'Управление каналом',
         dropdownButtonRemove: 'Удалить',
         dropdownButtonRename: 'Переименовать',
+        create: 'Канал создан',
+        rename: 'Канал переименован',
+        delete: 'Канал удалён',
       },
       modal: {
         name: 'Имя канала',

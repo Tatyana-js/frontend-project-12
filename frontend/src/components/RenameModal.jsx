@@ -3,6 +3,7 @@ import { Modal, FormGroup, FormControl, Button, Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
 import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
 import { useRenameChannelMutation, useGetChannelsQuery } from '../api/chatApi';
 import { channelSchema } from '../utils/validate.js';
 
@@ -26,6 +27,9 @@ const RenameChannel = ({ onHide }) => {
     onSubmit: async (values) => {
       try {
         await renameChannel({name: values.name, id: channelId});
+        toast.success(t('channels.rename'), {
+          position: 'top-right',
+        });
         onHide();
       } catch (error) {
         console.log(error);

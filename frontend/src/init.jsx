@@ -1,5 +1,5 @@
 import i18next from 'i18next';
-import { I18nextProvider } from 'react-i18next';
+import { ToastContainer } from 'react-toastify';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { chatApi } from './api/chatApi.js';
 import activeChannelReducer from './slices/activeChannelSlice.js';
@@ -62,6 +62,7 @@ const init = async () => {
   return (
       <Provider store={store}>
         <App />
+        <ToastContainer />
       </Provider>
   );
 };

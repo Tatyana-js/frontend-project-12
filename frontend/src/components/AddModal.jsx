@@ -3,6 +3,7 @@ import { useFormik } from 'formik';
 import { Modal, FormGroup, FormControl, Button, Form } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
 import { channelSchema } from '../utils/validate.js';
 import { useAddChannelMutation, useGetChannelsQuery } from '../api/chatApi';
 import { selectActiveTab } from '../slices/activeChannelSlice.js';
@@ -27,6 +28,9 @@ const AddChannel = ({ onHide }) => {
       try {
         const response = await addChannel({name: values.name});
         dispatch(selectActiveTab(response.data));
+        toast.success(t('channels.create'), {
+          position: 'top-right',
+        });
         onHide();
       } catch (error) {
         console.log(error);

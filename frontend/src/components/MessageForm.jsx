@@ -1,6 +1,6 @@
 import { Button, Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { useFormik } from 'formik';
 
 const MessageForm = ({ activeChannelId, username, addMessage }) => {
@@ -22,10 +22,6 @@ const MessageForm = ({ activeChannelId, username, addMessage }) => {
       }
     },
   });
-
-  // useEffect(() => {
-  //   formControlEl.current.focus();
-  // }, []);
 
   return (
     <div className="mt-auto px-5 py-3">
@@ -52,7 +48,6 @@ const MessageForm = ({ activeChannelId, username, addMessage }) => {
               </svg>
               <span className="visually-hidden">{t('formMesseges.button')}</span>  
             </Button>
-              
         </Form.Group>
       </Form>
     </div>
