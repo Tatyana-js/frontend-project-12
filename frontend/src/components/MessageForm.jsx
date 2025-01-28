@@ -1,32 +1,37 @@
 import { Button, Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useFormik } from 'formik';
 
 const MessageForm = ({ activeChannelId, username, addMessage }) => {
   const { t } = useTranslation();
   const formControlEl = useRef(null);
+
   const formik = useFormik({
     initialValues: {
       body: '',
     },
-    onSubmit: async (values, { setFieldValue }) => {
+    onSubmit: async (values) => {
       try {
         const newMessege = { body: values.body, channelId: activeChannelId, username };
         await addMessage(newMessege);
-        setFieldValue('body', newMessege.body);
         formik.resetForm();
+        formControlEl.current.focus();
       } catch (error) {
           console.log(error);
       }
     },
   });
+
+  // useEffect(() => {
+  //   formControlEl.current.focus();
+  // }, []);
+
   return (
     <div className="mt-auto px-5 py-3">
       <Form  className="py-1 border rounded-2" onSubmit={formik.handleSubmit} noValidate>
         <Form.Group className="input-group has-validation" >
           <Form.Control 
-            type="text"
             name="body"
             required
             aria-label={t('formMesseges.input')}
@@ -35,6 +40,7 @@ const MessageForm = ({ activeChannelId, username, addMessage }) => {
             value={formik.values.body}
             ref={formControlEl}
             onChange={formik.handleChange}
+            autoFocus
           />
             <Button 
               type="submit" 

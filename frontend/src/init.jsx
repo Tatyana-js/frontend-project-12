@@ -37,23 +37,27 @@ const init = async () => {
 
   const socket = io();
 
-  socket.on('newMessage', (payload) => {
-    store.dispatch(chatApi.util.updateQueryData('getMessages', undefined, (draft) => {
-      draft.push({ payload });
-      }));
-    });
     socket.on('newChannel', (payload) => {
       store.dispatch(chatApi.util.updateQueryData('getChannels', undefined, (draft) => {
         draft.push({ payload });
-        }));
-      });
+      }));
+    });
     socket.on('removeChannel', ({ payload } ) => {
-      store.dispatch(chatApi.util.updateQueryData('getChannels', undefined, (draft, id) => {
+      store.dispatch(chatApi.util.updateQueryData('getChannels', undefined, (draft) => {
         draft.filter((channel) => channel.id !== payload);
-        }));
-      });
-  // socket.on('renameMessage', (payload) => {
-  // })
+      }));
+    });
+    socket.on('renameChannel', ({ payload } ) => {
+      store.dispatch(chatApi.util.updateQueryData('getChannels', undefined, (draft) => {
+        const channel = draft.find((channel) => channel.id === payload.id);
+        channel.name = payload.name;
+      }));
+    });
+    socket.on('newMessage', (payload) => {
+      store.dispatch(chatApi.util.updateQueryData('getMessages', undefined, (draft) => {
+        draft.push({ payload });
+      }));
+    }); 
 
   return (
       <Provider store={store}>

@@ -29,6 +29,7 @@ export default {
         removeChannel: 'Удалить канал',
         removeText: 'Уверены?',
         removeButton: 'Удалить',
+        renameChannel: 'Переименовать канал',
         schema: {
           required: 'Обязательное поле',
           minMax: 'От 3 до 20 символов',

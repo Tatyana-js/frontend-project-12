@@ -8,13 +8,13 @@ const RemoveChannel = ({ onHide }) => {
   const { t } = useTranslation();
   const [ removeChannel ] = useRemoveChannelMutation();
   const dispatch = useDispatch();
-  const channel = useSelector((state) => state.modals.channel);
+  const channel = useSelector((state) => state.modals.channel);  
 
   const handleRemove = async (id) => {
     try {
       await removeChannel(id);
-      onHide();
       dispatch(selectActiveTab(defaultChannel));
+      onHide();
     } catch (err) {
       console.log(err);
     }

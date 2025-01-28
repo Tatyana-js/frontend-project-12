@@ -1,28 +1,37 @@
 import { Nav, Button, Dropdown } from 'react-bootstrap';
 import { useGetChannelsQuery } from '../api/chatApi.js';
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-import { selectActiveTab, activeChannelSelector } from '../slices/activeChannelSlice.js';
+import { selectActiveTab, activeChannelSelector, defaultChannel } from '../slices/activeChannelSlice.js';
 import ButtonPlus from './ChannelAddButtom.jsx.jsx';
 import AddChannel from './AddModal.jsx';
 import RemoveChannel from './RemoveModel.jsx';
+import RenameChannel from './RenameModal.jsx';
 import { closeModal, openModal } from '../slices/modalsSlice';
 
 const Channels = () => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const channelsRef = useRef(null);
-  
   const { data: channels = [] } = useGetChannelsQuery();
   const activeChannel = useSelector(activeChannelSelector);
   const modals = useSelector((state) => state.modals);
 
   const variant = (channel) => channel.id === activeChannel.id ? "secondary" : "";
+
   const hideModal = () =>  dispatch(closeModal());
   const showModal = (type, channel) => {
         dispatch(openModal({ type, channel }));
       };
+
+  useEffect(() => {
+    if (activeChannel.id === defaultChannel.id) {
+      channelsRef.current.scrollTop = 0;
+      } else {
+        channelsRef.current.scrollTop = channelsRef.current.scrollHeight;
+      }
+    }, [channels, activeChannel]);
 
 return (
   <>
@@ -38,7 +47,7 @@ return (
       ref={channelsRef}
     >
       {channels.map((channel) => {
-      return (
+        return (
           <Nav.Item as="li" key={channel.id} className="w-100">
             {!channel.removable && 
             <Button
@@ -61,14 +70,15 @@ return (
                 </Dropdown.Toggle>
                 <Dropdown.Menu>
                   <Dropdown.Item role="button" onClick={() => showModal('removing', channel)}>{t('channels.dropdownButtonRemove')}</Dropdown.Item>
-                  <Dropdown.Item role="button">{t('channels.dropdownButtonRename')}</Dropdown.Item>
+                  <Dropdown.Item role="button" onClick={() => showModal('renaming', channel)}>{t('channels.dropdownButtonRename')}</Dropdown.Item>
                 </Dropdown.Menu>
               </Dropdown>}
           </Nav.Item> 
           );
         }
         )}
-        {modals.type === 'removing' && (<RemoveChannel onHide={hideModal} />)} 
+        {modals.type === 'removing' && (<RemoveChannel onHide={hideModal} />)}
+        {modals.type === 'renaming' && (<RenameChannel onHide={hideModal} />)} 
     </Nav>
   </>
   );

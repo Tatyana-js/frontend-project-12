@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useEffect, useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { activeChannelSelector } from '../slices/activeChannelSlice.js';
@@ -8,13 +8,18 @@ import { useGetMessagesQuery, useAddMessageMutation } from '../api/chatApi.js';
 
 const MessageField = () => {
   const { t } = useTranslation(); 
-  const { data: messages = [], error, isLoading, refetch } =  useGetMessagesQuery();
+  const { data: messages = [] } =  useGetMessagesQuery();
   const [ addMessage ] = useAddMessageMutation();
   const activeChannel = useSelector(activeChannelSelector);
   const messagesEl = useRef(null);
-  const messagesOfChannel = messages.filter((message) => message.channelId === activeChannel.id);
   const { username } = useAuth();
+
+  const messagesOfChannel = messages.filter((message) => message.channelId === activeChannel.id);
   const countMessages = messagesOfChannel?.length || 0;
+
+  useEffect(() => {
+    messagesEl.current.scrollTop = messagesEl.current.scrollHeight;
+  }, [ messagesOfChannel]);
 
   return (
     <div className="d-flex flex-column h-100">
