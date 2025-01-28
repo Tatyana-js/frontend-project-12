@@ -32,6 +32,7 @@ export default {
         schema: {
           required: 'Обязательное поле',
           minMax: 'От 3 до 20 символов',
+          notOneOf: 'Должно быть уникальным',
         }
       },
       countMessages: {

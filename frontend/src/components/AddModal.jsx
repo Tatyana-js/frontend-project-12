@@ -1,23 +1,27 @@
-import { useEffect, useRef } from 'react';
+import { useRef } from 'react';
 import { useFormik } from 'formik';
 import { Modal, FormGroup, FormControl, Button, Form } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { channelSchema } from '../utils/validate.js';
-import { useAddChannelMutation } from '../api/chatApi';
+import { useAddChannelMutation, useGetChannelsQuery } from '../api/chatApi';
 import { selectActiveTab } from '../slices/activeChannelSlice.js';
 
 const AddChannel = ({ onHide }) => {
   const { t } = useTranslation();
   const dispatch = useDispatch();
   const [ addChannel ] = useAddChannelMutation();
+  const { data: channels = [] } = useGetChannelsQuery();
   const formControlEl = useRef(null);
-  
+
+  const channelsName = channels.map(channel => channel.name);
+ 
   const formik = useFormik({
     initialValues: {
       name: '',
     },
-    validationSchema: channelSchema(t),
+    validationSchema: channelSchema(t, channelsName),
+    
     validateOnChange: false,
     onSubmit: async (values) => {
       try {
