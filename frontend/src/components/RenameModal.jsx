@@ -27,9 +27,7 @@ const RenameChannel = ({ onHide }) => {
     onSubmit: async (values) => {
       try {
         await renameChannel({name: values.name, id: channelId});
-        toast.success(t('channels.rename'), {
-          position: 'top-right',
-        });
+        toast.success(t('channels.rename'));
         onHide();
       } catch (error) {
         console.log(error);

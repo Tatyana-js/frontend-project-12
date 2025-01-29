@@ -28,9 +28,7 @@ const AddChannel = ({ onHide }) => {
       try {
         const response = await addChannel({name: values.name});
         dispatch(selectActiveTab(response.data));
-        toast.success(t('channels.create'), {
-          position: 'top-right',
-        });
+        toast.success(t('channels.create'));
         onHide();
       } catch (error) {
         console.log(error);

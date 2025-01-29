@@ -15,9 +15,7 @@ const RemoveChannel = ({ onHide }) => {
     try {
       await removeChannel(id);
       dispatch(selectActiveTab(defaultChannel));
-      toast.success(t('channels.delete'), {
-        position: 'top-right',
-      });
+      toast.success(t('channels.delete'));
       onHide();
     } catch (err) {
       console.log(err);
