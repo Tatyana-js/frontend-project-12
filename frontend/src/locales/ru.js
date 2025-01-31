@@ -1,6 +1,3 @@
-import { Dropdown } from "react-bootstrap";
-import Channels from "../components/Сhannels";
-
 export default {
     translation: {
       loginForm: {
@@ -8,7 +5,6 @@ export default {
         username: 'Ваш ник',
         password: 'Пароль',
         span: 'Нет аккаунта?',
-        signUp: 'Регистрация',
         error: 'Неверное имя пользователя или пароль',
       },
       navBar: {
@@ -49,9 +45,16 @@ export default {
         placeholder: 'Введите сообщение...',
         button: 'Отправить',
         input: 'Новое сообщение',
+      },
+      pageNotFound: 'Страница не найдена',
+      redirect: 'Но вы можете перейти ',
+      redirectOnMainPage: 'на главную страницу',
+      signUpForm: {
+        signUp: 'Регистрация',
+        username: 'Имя пользователя',
+        confirmPassword: 'Подтвердите пароль',
+        invalidConfirmPassword: 'Пароли должны совпадать',
+        signUpButton: 'Зарегистрироваться',
       }
-      // singUpForm: {
-      //   username: ''
-      // }
     }
   };

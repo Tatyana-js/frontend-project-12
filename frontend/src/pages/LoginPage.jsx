@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { useEffect, useRef, useState } from 'react';
+import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
 import { useFormik } from 'formik';
@@ -9,17 +9,12 @@ import useAuth from '../hooks/index.jsx';
 import router from '../utils/routes.js';
 import userSchema from '../utils/validate.js';
 
-
 const LoginPage = () => {
   const auth = useAuth();
   const { t } = useTranslation(); 
   const [authFailed, setAuthFailed] = useState(false);
   const inputEl = useRef(null);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    inputEl.current.focus();
-  }, []);
 
   const formik = useFormik({
     initialValues: {
@@ -67,6 +62,7 @@ const LoginPage = () => {
                       value={formik.values.username}
                       isInvalid={authFailed}
                       ref={inputEl}
+                      autoFocus
                     />
                     <Form.Label>{t('loginForm.username')}</Form.Label>
                   </Form.Group>

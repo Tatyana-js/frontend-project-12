@@ -8,7 +8,6 @@ import MessageField from '../components/MessageField.jsx';
     const { t } = useTranslation();
     const { isLoading: isChannelsLoading, error: channelsError } = useGetChannelsQuery();
 
-  
     return (
       <Container className="h-100 my-4 overflow-hidden rounded shadow">
         {isChannelsLoading && (      

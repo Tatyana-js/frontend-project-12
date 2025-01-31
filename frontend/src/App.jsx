@@ -5,6 +5,7 @@ import  MainNavbar from './components/Navbar.jsx';
 import PageNotFound from './pages/PageNotFound.jsx';
 import MainPage from './pages/MainPage.jsx';
 import LoginPage from './pages/LoginPage.jsx';
+import Registration from './pages/RegistrationPage.jsx';
 import router from './utils/routes.js';
 import AuthProvider, { PrivateRoute } from './context/AuthProvider.jsx';
 
@@ -25,6 +26,7 @@ const App = () => {
               )} 
             />
             <Route path={router.login()} element={<LoginPage />} />
+            <Route path={router.signUpPath()} element={<Registration />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </AuthProvider>

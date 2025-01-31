@@ -1,6 +1,8 @@
+import { StrictMode } from 'react';
 import i18next from 'i18next';
 import { ToastContainer } from 'react-toastify';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
+// import { ErrorBoundary } from '@rollbar/react';
 import { chatApi } from './api/chatApi.js';
 import activeChannelReducer from './slices/activeChannelSlice.js';
 import modalsReducer from './slices/modalsSlice.js';
@@ -58,12 +60,21 @@ const init = async () => {
         draft.push({ payload });
       }));
     }); 
+    // const rollbarConfig = {
+    //   accessToken: import.meta.env.VITE_ROLLBAR_ACCESS_TOKEN,
+    //   environment: import.meta.env.MODE,
+    // };
 
   return (
+    // <ErrorBoundary fallback={rollbarConfig}>
       <Provider store={store}>
-        <App />
-        <ToastContainer />
+       <StrictMode>
+          <App />
+          <ToastContainer />
+        </StrictMode> 
       </Provider>
+    // </ErrorBoundary>
+
   );
 };
 

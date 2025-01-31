@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/Tatyana-js/frontend-project-12#readme",
   "dependencies": {
-    "@hexlet/chat-server": "^2.0.4"
+    "@hexlet/chat-server": "^2.0.4",
+    "@rollbar/react": "^0.12.0-beta",
+    "rollbar": "^2.26.4"
   }
 }
