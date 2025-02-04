@@ -26,7 +26,7 @@ const App = () => {
               )} 
             />
             <Route path={router.login()} element={<LoginPage />} />
-            <Route path={router.signUpPath()} element={<Registration />} />
+            <Route path={router.signUp()} element={<Registration />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
         </AuthProvider>

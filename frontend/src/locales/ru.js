@@ -1,3 +1,5 @@
+import { exists } from "i18next";
+
 export default {
     translation: {
       loginForm: {
@@ -55,6 +57,9 @@ export default {
         confirmPassword: 'Подтвердите пароль',
         invalidConfirmPassword: 'Пароли должны совпадать',
         signUpButton: 'Зарегистрироваться',
+        minSymbolForPassword: 'Не менее 6 символов',
+        oneOfPassword: 'Пароли должны совпадать',
+        existsUser: 'Такой пользователь уже существует',
       }
     }
   };

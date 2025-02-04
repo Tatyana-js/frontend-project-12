@@ -7,7 +7,6 @@ import { useTranslation } from 'react-i18next';
 import avatarLogin from '../assets/avatarLogin.jpg';
 import useAuth from '../hooks/index.jsx';
 import router from '../utils/routes.js';
-import userSchema from '../utils/validate.js';
 
 const LoginPage = () => {
   const auth = useAuth();
@@ -21,7 +20,6 @@ const LoginPage = () => {
       username: '',
       password: '',
     },
-    validationSchema: userSchema(),
     onSubmit: async (values) => {
       setAuthFailed(false);
         try {
@@ -89,7 +87,7 @@ const LoginPage = () => {
             <Card.Footer className="p-4">
               <div className="text-center">
                 <span>{t('loginForm.span')} </span> 
-                <a href="/signup">{t('loginForm.signUp')}</a>
+                <a href="/signup">{t('signUpForm.signUp')}</a>
               </div>
             </Card.Footer>
           </Card>

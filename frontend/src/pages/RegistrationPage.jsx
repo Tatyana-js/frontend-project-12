@@ -1,18 +1,20 @@
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
-import { useRef } from 'react';
+import { useRef, useState } from 'react';
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import avatarRegisration from '../assets/avatarRegistration.jpg';
 import router from '../utils/routes.js';
-import { useCreateUserMutation } from '../api/chatApi.js'; 
+import userSchema from '../utils/validate.js';
+import useAuth from '../hooks/index.jsx';
 
 const Registration = () => {
   const { t } = useTranslation();
-  const inputEl = useRef();
-  const [ createUser ] = useCreateUserMutation();
+  const inputEl = useRef(null);
+  const [authFailed, setAuthFailed] = useState(false);
   const navigate = useNavigate();
+  const auth = useAuth();
 
   const formik = useFormik({
     initialValues: {
@@ -20,23 +22,26 @@ const Registration = () => {
       password: '',
       confirmPassword: '',
     },
-    onSubmit: async (values) => {
-        try {
-          const user = {
-            username: values.username,
-            password: values.password,
-           };
-          await createUser(user);
+    validationSchema: userSchema(t),
+    onSubmit: async ({ username, password }, { setSubmitting }) => {
+      try {
+        const { data } = await axios.post(router.signUpPath(), { username, password });
+          auth.logIn(data.token, data.username);
           navigate(router.main());
-        } catch (error) {
-          formik.setSubmitting(false);
-            if (axios.isAxiosError(error) && err.response.status === 401) {
+      } catch (err) {
+          setSubmitting(false);
+          console.log(err);
+          if (axios.isAxiosError(err) && err.response.status === 401) {
             inputEl.current.select();
-            return error;
+            return; 
           }
-        throw error;
+          if (err.response.status === 409) {
+            setAuthFailed(true);
+            inputEl.current.select(); 
+          }
+          throw err;
         }
-    },
+    }
   });
 
   return (
@@ -61,11 +66,11 @@ const Registration = () => {
                       value={formik.values.username}
                       ref={inputEl}
                       autoFocus
+                      isInvalid={(formik.touched.username && !!formik.errors.username) || authFailed}
+                      onBlur={formik.handleBlur}
                     />
                     <Form.Label>{t('signUpForm.username')}</Form.Label>
-                    {/* {({ errors, touched }) => (
-                      {errors.username && touched.username ?  (
-                      <Form.Control.Feedback type="invalid" tooltip>{t('modal.schema.required')}</Form.Control.Feedback>) : null})} */}
+                    <Form.Control.Feedback type="invalid" tooltip>{formik.errors.username}</Form.Control.Feedback>
                   </Form.Group>
                   <Form.Group className="form-floating mb-3" controlId="password">
                     <Form.Control
@@ -78,9 +83,11 @@ const Registration = () => {
                       onChange={formik.handleChange}
                       value={formik.values.password}
                       ref={inputEl}
+                      isInvalid={(formik.touched.password && !!formik.errors.password) || authFailed}
+                      onBlur={formik.handleBlur}
                     />
                     <Form.Label>{t('loginForm.password')}</Form.Label>
-                    <Form.Control.Feedback type="invalid" tooltip>{t('modal.schema.required')}</Form.Control.Feedback>
+                    <Form.Control.Feedback type="invalid" tooltip>{formik.errors.password}</Form.Control.Feedback>
                   </Form.Group>
                   <Form.Group className="form-floating mb-4" controlId="confirmPassword">
                     <Form.Control
@@ -93,8 +100,12 @@ const Registration = () => {
                         onChange={formik.handleChange}
                         value={formik.values.confirmPassword}
                         ref={inputEl}
+                        isInvalid={(formik.touched.confirmPassword && !!formik.errors.confirmPassword) || authFailed}
+                        onBlur={formik.handleBlur}
                       />
-                    <Form.Control.Feedback type="invalid" tooltip>{t('signUpForm.invalidConfirmPasswor')}</Form.Control.Feedback>
+                    <Form.Control.Feedback type="invalid" tooltip>
+                      {authFailed ? t('signUpForm.existsUser') : formik.errors.confirmPassword}
+                    </Form.Control.Feedback>
                     <Form.Label>{t('signUpForm.confirmPassword')}</Form.Label>
                   </Form.Group>
                   <Button type="submit" variant="outline-primary" className="w-100">{t('signUpForm.signUpButton')}</Button>

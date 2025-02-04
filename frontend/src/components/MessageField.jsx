@@ -19,7 +19,7 @@ const MessageField = () => {
 
   useEffect(() => {
     messagesEl.current.scrollTop = messagesEl.current.scrollHeight;
-  }, [ messagesOfChannel]);
+  }, [messagesOfChannel]);
 
   return (
     <div className="d-flex flex-column h-100">

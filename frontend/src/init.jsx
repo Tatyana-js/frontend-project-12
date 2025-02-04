@@ -7,7 +7,7 @@ import { chatApi } from './api/chatApi.js';
 import activeChannelReducer from './slices/activeChannelSlice.js';
 import modalsReducer from './slices/modalsSlice.js';
 import { io } from 'socket.io-client';
-import { initReactI18next } from 'react-i18next';
+import { initReactI18next, I18nextProvider } from 'react-i18next';
 import { Provider } from 'react-redux';
 import App from './App.jsx';
 import resources from './locales/index.js';
@@ -67,12 +67,14 @@ const init = async () => {
 
   return (
     // <ErrorBoundary fallback={rollbarConfig}>
+    <I18nextProvider i18n={i18n}>
       <Provider store={store}>
        <StrictMode>
           <App />
           <ToastContainer />
         </StrictMode> 
       </Provider>
+    </I18nextProvider>  
     // </ErrorBoundary>
 
   );
