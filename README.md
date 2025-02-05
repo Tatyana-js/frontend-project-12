@@ -1,6 +1,7 @@
 # Чат Slack
 
 [![Actions Status](https://github.com/Tatyana-js/frontend-project-12/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Tatyana-js/frontend-project-12/actions)
+[![Maintainability](https://api.codeclimate.com/v1/badges/482fed40b8cb3a5af80b/maintainability)](https://codeclimate.com/github/Tatyana-js/frontend-project-12/maintainability)
 
 [ССылка на приложение](https://github.com/Tatyana-js/frontend-project-12)
 

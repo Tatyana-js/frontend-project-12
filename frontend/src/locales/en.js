@@ -21,6 +21,7 @@ export default {
       create: 'Channel created',
       rename: 'Channel renamed',
       delete: 'Channel deleted',
+      buttonPlus: '+',
     },
     modal: {
       name: 'Channel Name',

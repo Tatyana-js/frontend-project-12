@@ -1,5 +1,3 @@
-import { exists } from "i18next";
-
 export default {
     translation: {
       loginForm: {
@@ -21,6 +19,7 @@ export default {
         create: 'Канал создан',
         rename: 'Канал переименован',
         delete: 'Канал удалён',
+        buttonPlus: '+',
       },
       modal: {
         name: 'Имя канала',

@@ -26,6 +26,9 @@ export default defineConfig({
           if (id.includes('bootstrap' || 'index-BwV0OUVV.css')) {
             return 'bootstrap';
           }
+          if (id.includes('node_modules')) {
+            return 'vendor';
+          }
         },
       },
     },
