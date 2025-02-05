@@ -66,6 +66,10 @@ const init = async () => {
       accessToken: '',
       environment: 'testenv',
     };
+    function TestError() {
+      const a = null;
+      return a.hello();
+    }
 
     filter.add(filter.getDictionary('en'));
     filter.add(filter.getDictionary('ru'));
@@ -76,6 +80,7 @@ const init = async () => {
         <ErrorBoundary>
           <Provider store={store}>
             <StrictMode>
+              <TestError />
               <App />
               <ToastContainer />
             </StrictMode> 
