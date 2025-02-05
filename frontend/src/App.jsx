@@ -1,6 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import  MainNavbar from './components/Navbar.jsx';
 import PageNotFound from './pages/PageNotFound.jsx';
 import MainPage from './pages/MainPage.jsx';
@@ -10,6 +11,11 @@ import router from './utils/routes.js';
 import AuthProvider, { PrivateRoute } from './context/AuthProvider.jsx';
 
 const App = () => {
+  const { i18n } = useTranslation();
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+
   return (
     <BrowserRouter future={{
       v7_startTransition: true,
@@ -29,6 +35,10 @@ const App = () => {
             <Route path={router.signUp()} element={<Registration />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
+          <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
+            <button onClick={() => changeLanguage('ru')}>ru</button>
+            <button onClick={() => changeLanguage('en')}>en</button>
+          </div>
         </AuthProvider>
       </div>
     </BrowserRouter>

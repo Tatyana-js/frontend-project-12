@@ -2,6 +2,7 @@ import { StrictMode } from 'react';
 import i18next from 'i18next';
 import { ToastContainer } from 'react-toastify';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
+import * as filter from 'leo-profanity';
 // import { ErrorBoundary } from '@rollbar/react';
 import { chatApi } from './api/chatApi.js';
 import activeChannelReducer from './slices/activeChannelSlice.js';
@@ -64,6 +65,8 @@ const init = async () => {
     //   accessToken: import.meta.env.VITE_ROLLBAR_ACCESS_TOKEN,
     //   environment: import.meta.env.MODE,
     // };
+    filter.add(filter.getDictionary('en'));
+    filter.add(filter.getDictionary('ru'));
 
   return (
     // <ErrorBoundary fallback={rollbarConfig}>

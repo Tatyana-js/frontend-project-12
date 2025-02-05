@@ -11,7 +11,7 @@ const PageNotFound = () => {
         alt={t('pageNotFound')} 
         className="img-fluid h-25" 
       />
-      <h1 className="h4 text-muted">{t('pageNotFound')}</h1>
+      <h1 className="h4 text-muted">{t('errors.pageNotFound')}</h1>
       <p className="text-muted">
         {t('redirect')}
         <a href="/">{t('redirectOnMainPage')}</a>

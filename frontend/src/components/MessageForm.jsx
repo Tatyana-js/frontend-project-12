@@ -2,6 +2,7 @@ import { Button, Form } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useRef } from 'react';
 import { useFormik } from 'formik';
+import * as filter from 'leo-profanity';
 
 const MessageForm = ({ activeChannelId, username, addMessage }) => {
   const { t } = useTranslation();
@@ -13,7 +14,8 @@ const MessageForm = ({ activeChannelId, username, addMessage }) => {
     },
     onSubmit: async (values) => {
       try {
-        const newMessege = { body: values.body, channelId: activeChannelId, username };
+        const filterdBody = filter.clean(values.body);
+        const newMessege = { body: filterdBody, channelId: activeChannelId, username };
         await addMessage(newMessege);
         formik.resetForm();
         formControlEl.current.focus();

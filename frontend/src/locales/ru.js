@@ -48,7 +48,10 @@ export default {
         button: 'Отправить',
         input: 'Новое сообщение',
       },
-      pageNotFound: 'Страница не найдена',
+      errors: {
+        axiosError: 'Ошибка соединения',
+        pageNotFound: 'Страница не найдена',
+      },
       redirect: 'Но вы можете перейти ',
       redirectOnMainPage: 'на главную страницу',
       signUpForm: {

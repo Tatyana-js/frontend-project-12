@@ -7,6 +7,7 @@ import { useTranslation } from 'react-i18next';
 import avatarLogin from '../assets/avatarLogin.jpg';
 import useAuth from '../hooks/index.jsx';
 import router from '../utils/routes.js';
+import { toast } from 'react-toastify';
 
 const LoginPage = () => {
   const auth = useAuth();
@@ -31,6 +32,7 @@ const LoginPage = () => {
             if (axios.isAxiosError(err) && err.response.status === 401) {
             setAuthFailed(true);
             inputEl.current.select();
+            toast.error(t('errors.axiosError'));
             return;
           }
         throw err;

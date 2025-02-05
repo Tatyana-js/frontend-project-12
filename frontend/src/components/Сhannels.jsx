@@ -3,6 +3,7 @@ import { useGetChannelsQuery } from '../api/chatApi.js';
 import { useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import * as filter from 'leo-profanity';
 import { selectActiveTab, activeChannelSelector, defaultChannel } from '../slices/activeChannelSlice.js';
 import ButtonPlus from './ChannelAddButtom.jsx.jsx';
 import AddChannel from './AddModal.jsx';
@@ -63,7 +64,7 @@ return (
               <Dropdown role="group" className='d-flex btn-group'>
                 <Button className='w-100 rounded-0 text-start text-truncate' variant={variant(channel)} onClick={() => dispatch(selectActiveTab(channel))}>
                   <span className="me-1"># </span>
-                  {channel.name}  
+                  {filter.clean(channel.name)}  
                 </Button>
                 <Dropdown.Toggle className="flex-grow-0 dropdown-toggle-split" variant={variant(channel)}>
                   <span className="visually-hidden">{t('channels.setupChannel')}</span>

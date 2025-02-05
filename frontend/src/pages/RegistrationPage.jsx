@@ -4,6 +4,7 @@ import { useRef, useState } from 'react';
 import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import avatarRegisration from '../assets/avatarRegistration.jpg';
 import router from '../utils/routes.js';
 import userSchema from '../utils/validate.js';
@@ -30,9 +31,9 @@ const Registration = () => {
           navigate(router.main());
       } catch (err) {
           setSubmitting(false);
-          console.log(err);
-          if (axios.isAxiosError(err) && err.response.status === 401) {
+          if (axios.isAxiosError(err)) {
             inputEl.current.select();
+            toast.error(t('errors.axiosError'));
             return; 
           }
           if (err.response.status === 409) {
