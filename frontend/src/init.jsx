@@ -3,7 +3,7 @@ import i18next from 'i18next';
 import { ToastContainer } from 'react-toastify';
 import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import * as filter from 'leo-profanity';
-// import { ErrorBoundary } from '@rollbar/react';
+import { Provider as RollbarProvider, ErrorBoundary } from '@rollbar/react';
 import { chatApi } from './api/chatApi.js';
 import activeChannelReducer from './slices/activeChannelSlice.js';
 import modalsReducer from './slices/modalsSlice.js';
@@ -61,25 +61,28 @@ const init = async () => {
         draft.push({ payload });
       }));
     }); 
-    // const rollbarConfig = {
-    //   accessToken: import.meta.env.VITE_ROLLBAR_ACCESS_TOKEN,
-    //   environment: import.meta.env.MODE,
-    // };
+
+    const rollbarConfig = {
+      accessToken: '',
+      environment: 'testenv',
+    };
+
     filter.add(filter.getDictionary('en'));
     filter.add(filter.getDictionary('ru'));
 
   return (
-    // <ErrorBoundary fallback={rollbarConfig}>
-    <I18nextProvider i18n={i18n}>
-      <Provider store={store}>
-       <StrictMode>
-          <App />
-          <ToastContainer />
-        </StrictMode> 
-      </Provider>
-    </I18nextProvider>  
-    // </ErrorBoundary>
-
+    <RollbarProvider config={rollbarConfig}>
+      <I18nextProvider i18n={i18n}>
+        <ErrorBoundary>
+          <Provider store={store}>
+            <StrictMode>
+              <App />
+              <ToastContainer />
+            </StrictMode> 
+          </Provider>
+        </ErrorBoundary>
+      </I18nextProvider>
+    </RollbarProvider>  
   );
 };
 
