@@ -15,7 +15,7 @@ export const chatApi = createApi({
   }),
   endpoints: (builder) => ({
     getChannels: builder.query({ // Каналы
-      query: () => '/channel',
+      query: () => '/channels',
       providesTags: ['Channels'],
     }),
     addChannel: builder.mutation ({
