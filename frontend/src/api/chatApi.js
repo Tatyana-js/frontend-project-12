@@ -15,7 +15,7 @@ export const chatApi = createApi({
   }),
   endpoints: (builder) => ({
     getChannels: builder.query({ // Каналы
-      query: () => '/channels',
+      query: () => '/channel',
       providesTags: ['Channels'],
     }),
     addChannel: builder.mutation ({
@@ -53,21 +53,6 @@ export const chatApi = createApi({
       }),
       invalidatesTags: ['Messages'],
     }),
-    removeMessage: builder.mutation ({
-      query: (id) => ({
-        url: `/messages/${id}`,
-        method: 'DELETE',
-      }),
-      invalidatesTags: ['Messages'],
-    }),
-    renameMessage: builder.mutation ({
-      query: ({ id, body }) => ({
-        url: `/channels/${id}`,
-        method: 'PATCH',
-        body: { name },
-      }),
-      invalidatesTags: ['Channels', 'Messages'],
-    }),
   }),
 });
 
@@ -78,5 +63,4 @@ export const {
   useAddMessageMutation,
   useRenameChannelMutation,
   useRemoveChannelMutation, 
-  useRemoveMessageMutation,
 } = chatApi;

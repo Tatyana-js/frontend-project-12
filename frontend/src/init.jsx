@@ -66,10 +66,6 @@ const init = async () => {
       accessToken: '45c668d145bf4e379844b7f78319daf0',
       environment: 'production',
     };
-  const TestError = () => {
-    const element = null;
-    console.log(element.map(el => el));
-  };
 
     filter.add(filter.getDictionary('en'));
     filter.add(filter.getDictionary('ru'));
@@ -80,7 +76,6 @@ const init = async () => {
         <ErrorBoundary>
           <Provider store={store}>
             <StrictMode>
-              <TestError />
               <App />
               <ToastContainer />
             </StrictMode> 
