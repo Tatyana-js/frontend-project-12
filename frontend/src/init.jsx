@@ -68,7 +68,7 @@ const init = async () => {
     };
   const TestError = () => {
     const element = null;
-    element.map(el => el);
+    console.log(element.map(el => el));
   };
 
     filter.add(filter.getDictionary('en'));
