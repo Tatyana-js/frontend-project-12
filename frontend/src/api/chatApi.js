@@ -27,7 +27,7 @@ export const chatApi = createApi({
       invalidatesTags: ['Channels'],
     }),
     renameChannel: builder.mutation ({
-      query: ({ id, name }) => ({
+      query: ({ name, id }) => ({
         url: `/channels/${id}`,
         method: 'PATCH',
         body: { name },
