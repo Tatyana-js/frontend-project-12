@@ -25,23 +25,23 @@
 
 ***
 ### Установка 
-1. _клонируем репозиторий_
+1. #### _клонируем репозиторий_
   
    git clone https://github.com/Tatyana-js/frontend-project-12.git
 
-2. _переходим в папку_ ***frontend-project-12***
+2. #### _переходим в папку_ ***frontend-project-12***
    
    cd frontend-project-12
 
-3. _утанавливаем зависимости_
+3. #### _утанавливаем зависимости_
    
    npm install
 
-4. _сборка_
+4. #### _сборка_
    
    npm run build
 
-5. _запуск_
+5. #### _запуск_
    
    - make start
    
