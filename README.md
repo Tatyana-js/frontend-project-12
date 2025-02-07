@@ -22,3 +22,16 @@
 10. Yup
 11. Vite
 
+### Установка 
+клонируем репозиторий
+ - git clone https://github.com/Tatyana-js/frontend-project-12.git
+переходим в папку **frontend-project-12**
+ - cd frontend-project-12
+утанавливаем зависимости
+ - npm install
+сборка
+ - npm run build
+запуск
+ - make start
+ - make start-frontend
+
