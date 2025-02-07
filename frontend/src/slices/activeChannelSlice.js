@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 export const defaultChannel = {
-  id: '0', 
+  id: '1', 
   name: 'general', 
   removable: false,
 };
