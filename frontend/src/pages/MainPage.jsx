@@ -16,7 +16,7 @@ import MessageField from '../components/MessageField.jsx';
           </Spinner>
         )}
         {channelsError && (
-          console.log(error.message)
+          JSON.stringify(channelsError.data)
         )}
        <Row className="h-100 bg-white flex-md-row">
         <Col sx={4} className="col-md-2 border-end px-0 bg-light flex-column h-100 d-flex">
