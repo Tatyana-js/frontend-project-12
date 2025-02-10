@@ -5,7 +5,7 @@ export default {
         username: 'Ваш ник',
         password: 'Пароль',
         span: 'Нет аккаунта?',
-        error: 'Неверное имя пользователя или пароль',
+        error: 'Неверные имя пользователя или пароль',
       },
       navBar: {
         title: 'Hexlet Chat',
