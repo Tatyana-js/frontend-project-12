@@ -63,7 +63,7 @@ const Channels = () => {
       } else {
         channelsRef.current.scrollTop = channelsRef.current.scrollHeight;
       }
-  }, [activeChannel, channels]);
+  }, [activeChannel]);
 
 return (
   <>
