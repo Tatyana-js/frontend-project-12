@@ -40,7 +40,7 @@ const Channels = () => {
   const notRemovableChannel = (channel) => !channel.removable && (
     <Button
       type="button" 
-      className="w-100 rounded-0 text-start"
+      className="w-100 rounded-0 text-start text-truncate"
       variant={variant(channel)}
       onClick={() => dispatch(selectActiveTab(channel))}
     >
