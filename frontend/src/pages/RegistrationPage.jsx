@@ -31,11 +31,6 @@ const Registration = () => {
           navigate(router.main());
       } catch (err) {
           setSubmitting(false);
-          if (axios.isAxiosError(err)) {
-            inputEl.current.select();
-            toast.error(t('errors.axiosError'));
-            return; 
-          }
           if (err.response.status === 409) {
             setAuthFailed(true);
             inputEl.current.select(); 
