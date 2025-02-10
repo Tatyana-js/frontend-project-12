@@ -61,7 +61,7 @@ const RenameChannel = ({ onHide }) => {
                     isInvalid={formik.errors.name}
                     autoFocus
                   />
-                  <Form.Label className='visually-hidden' htmlFor='channelName'>{t('modal.name')}</Form.Label>
+                  <Form.Label className='visually-hidden' htmlFor='name'>{t('modal.name')}</Form.Label>
                   {formik.errors.name && 
                    <Form.Control.Feedback type="invalid">{formik.errors.name}</Form.Control.Feedback> 
                   }
