@@ -54,13 +54,16 @@ const Channels = () => {
     dispatch(openModal({ type, channel }));
   };
 
-  useEffect(() => {
-    if (activeChannel.id === defaultChannel.id) {
-      channelsRef.current.scrollTop = 0;
+    useEffect(() => {
+      if (activeChannel.id === defaultChannel.id) {
+        channelsRef.current.scrollTo({
+          top: 0,
+          behavior: 'smooth',
+        });
       } else {
-        activeChannel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        channelsRef.current.scrollTop = channelsRef.current.scrollHeight;
       }
-    }, [channels, activeChannel]);
+  }, [activeChannel, channels]);
 
 return (
   <>

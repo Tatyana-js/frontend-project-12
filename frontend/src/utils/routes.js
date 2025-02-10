@@ -6,5 +6,5 @@ export default {
   signUp: () => '/signup',
   loginPath: () => [apiPath, 'login'].join('/'),
   channelsPath: () => [apiPath, 'channels'].join('/'),
-  signUpPath: () => [apiPath, '/signup'].join('/'),
+  signUpPath: () => [apiPath, 'signup'].join('/'),
 };
