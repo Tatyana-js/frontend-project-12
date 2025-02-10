@@ -3,7 +3,7 @@
 [![Actions Status](https://github.com/Tatyana-js/frontend-project-12/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Tatyana-js/frontend-project-12/actions)
 [![Maintainability](https://api.codeclimate.com/v1/badges/482fed40b8cb3a5af80b/maintainability)](https://codeclimate.com/github/Tatyana-js/frontend-project-12/maintainability)
 
-[ССылка на приложение](https://github.com/Tatyana-js/frontend-project-12)
+[ССылка на приложение](https://frontend-project-12-v83b.onrender.com/)
 
 ### Описание
 Проект представляет собой современное веб-приложение для общения в реальном времени. Интуитивно понятный интерфейс включает каналы, с возможностью их добавления, удаления и редактирования, а также отправку пользователями сообщений. 

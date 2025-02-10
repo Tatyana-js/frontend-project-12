@@ -58,7 +58,7 @@ const Channels = () => {
     if (activeChannel.id === defaultChannel.id) {
       channelsRef.current.scrollTop = 0;
       } else {
-        channelsRef.current.scrollTop = channelsRef.current.scrollBy(0,channelsRef);
+        activeChannel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
     }, [channels, activeChannel]);
 

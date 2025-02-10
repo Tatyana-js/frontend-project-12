@@ -15,9 +15,7 @@ import MessageField from '../components/MessageField.jsx';
             <span className="visually-hidden">{t('isChannelsLoading')}</span>
           </Spinner>
         )}
-        {channelsError && (
-          JSON.stringify(channelsError.data)
-        )}
+        {channelsError && console.error(channelsError)}
        <Row className="h-100 bg-white flex-md-row">
         <Col sx={4} className="col-md-2 border-end px-0 bg-light flex-column h-100 d-flex">
           <Channels />
