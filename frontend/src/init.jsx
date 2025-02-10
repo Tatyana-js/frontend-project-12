@@ -58,7 +58,7 @@ const init = async () => {
     });
     socket.on('newMessage', (payload) => {
       store.dispatch(chatApi.util.updateQueryData('getMessages', undefined, (draft) => {
-        draft.push({ payload });
+        draft.push(payload);
       }));
     }); 
 
