@@ -73,10 +73,9 @@ const LoginPage = () => {
                       onChange={formik.handleChange} 
                       value={formik.values.password}
                       isInvalid={authFailed}
-                      ref={inputEl}
                     />
                     <Form.Label>{t('loginForm.password')}</Form.Label>
-                    <Form.Control.Feedback type="invalid">
+                    <Form.Control.Feedback type="invalid" tooltip>
                       {t('loginForm.error')}
                     </Form.Control.Feedback>
                   </Form.Group>  
