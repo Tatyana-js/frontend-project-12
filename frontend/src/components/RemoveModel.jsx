@@ -4,7 +4,7 @@ import { useRemoveChannelMutation } from '../api/chatApi';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
-const RemoveChannel = ({ onHide }) => {
+const RemoveChannel = ({ onHide, show }) => {
   const { t } = useTranslation();
   const [ removeChannel ] = useRemoveChannelMutation();
   const channel = useSelector((state) => state.modals.channel);  
@@ -20,10 +20,10 @@ const RemoveChannel = ({ onHide }) => {
   };
 
 return (
-  <>
-  <div className='fade modal-backdrop show'></div>
-  <div role="dialog" aria-modal="true" className="fade modal show" tabIndex="-1"style={{ display: 'block'}}>
-    <Modal.Dialog  className="modal-dialog-centered">
+  // <>
+  // <div className='fade modal-backdrop show'></div>
+  <div role="dialog" aria-modal="true" className="modal show" tabIndex="-1"style={{ display: 'block'}}>
+    <Modal show={show} className="fade modal-dialog-centered">
       <Modal.Header closeButton onHide={onHide}>
         <Modal.Title className="h4">{t('modal.removeChannel')}</Modal.Title>
       </Modal.Header>
@@ -34,10 +34,9 @@ return (
               <Button type="submit" variant="danger" onClick={() => handleRemove(channel.id)}>{t('modal.removeButton')}</Button> 
             </div>
         </Modal.Body>
-    </Modal.Dialog>
+    </Modal>
   </div>
-  </>
-
+  // </>
   );
 };
 
