@@ -1,8 +1,8 @@
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import { useRef, useState } from 'react';
-import { 
-  Container, Row, Col, Card, Form, Button 
+import {
+  Container, Row, Col, Card, Form, Button,
 } from 'react-bootstrap';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
@@ -26,15 +26,15 @@ const Registration = () => {
     },
     validationSchema: userSchema(t),
     onSubmit: async ({ username, password }, { setSubmitting }) => {
-    try {
-      const { data } = await axios.post(router.signUpPath(), { username, password });
-        auth.logIn(data.token, data.username);
-        navigate(router.main());
-    } catch (err) {
+      try {
+        const { data } = await axios.post(router.signUpPath(), { username, password });
+          auth.logIn(data.token, data.username);
+          navigate(router.main());
+      } catch (err) {
         setSubmitting(false);
         if (err.response.status === 409) {
           setAuthFailed(true);
-          inputEl.current.select(); 
+          inputEl.current.select();
         }
         throw err;
       }
@@ -63,7 +63,7 @@ const Registration = () => {
                       value={formik.values.username}
                       ref={inputEl}
                       autoFocus
-                      isInvalid={(formik.touched.username 
+                      isInvalid={(formik.touched.username
                         && !!formik.errors.username) || authFailed}
                       onBlur={formik.handleBlur}
                     />
@@ -90,19 +90,19 @@ const Registration = () => {
                   </Form.Group>
                   <Form.Group className="form-floating mb-4" controlId="confirmPassword">
                     <Form.Control
-                        type="password"
-                        autoComplete="new-password"
-                        aria-describedby="passwordHelpBlock"
-                        name="confirmPassword"
-                        required
-                        placeholder={t('signUpForm.confirmPassword')}
-                        onChange={formik.handleChange}
-                        value={formik.values.confirmPassword}
-                        ref={inputEl}
-                        isInvalid={(formik.touched.confirmPassword
-                          && !!formik.errors.confirmPassword) || authFailed}
-                        onBlur={formik.handleBlur}
-                      />
+                      type="password"
+                      autoComplete="new-password"
+                      aria-describedby="passwordHelpBlock"
+                      name="confirmPassword"
+                      required
+                      placeholder={t('signUpForm.confirmPassword')}
+                      onChange={formik.handleChange}
+                      value={formik.values.confirmPassword}
+                      ref={inputEl}
+                      isInvalid={(formik.touched.confirmPassword
+                      && !!formik.errors.confirmPassword) || authFailed}
+                      onBlur={formik.handleBlur}
+                    />
                     <Form.Control.Feedback type="invalid" tooltip>
                       {authFailed ? t('signUpForm.existsUser') : formik.errors.confirmPassword}
                     </Form.Control.Feedback>

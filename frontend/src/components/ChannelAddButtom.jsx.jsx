@@ -17,6 +17,6 @@ const ButtonPlus = ({ showModal, channel }) => {
       <span className="visually-hidden">{t('channels.buttonPlus')}</span>
     </Button>
   );
-};  
+};
 
 export default ButtonPlus;

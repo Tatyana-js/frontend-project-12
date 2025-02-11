@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { useFormik } from 'formik';
-import { 
-  Modal, FormGroup, FormControl, Button, Form 
+import {
+  Modal, FormGroup, FormControl, Button, Form,
 } from 'react-bootstrap';
 import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
@@ -63,7 +63,7 @@ const AddChannel = ({ onHide }) => {
                   {formik.errors.name
                     && <Form.Control.Feedback type="invalid">{formik.errors.name}</Form.Control.Feedback>}
                   <div className="d-flex justify-content-end">
-                    <Button type="button" className='me-2' variant="secondary" onClick={onHide}>{t('modal.cancel')}</Button>
+                    <Button type="button" className="me-2" variant="secondary" onClick={onHide}>{t('modal.cancel')}</Button>
                     <Button type="submit" variant="primary">{t('modal.send')}</Button>
                   </div>
                 </FormGroup>

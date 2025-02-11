@@ -1,6 +1,6 @@
 import { useRef, useEffect } from 'react';
-import { 
-  Modal, FormGroup, FormControl, Button, Form 
+import {
+  Modal, FormGroup, FormControl, Button, Form,
 } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
@@ -24,7 +24,7 @@ const RenameChannel = ({ onHide }) => {
       name: channelName,
     },
     validationSchema: channelSchema(t, channelsName),
-  
+
     validateOnChange: false,
     onSubmit: async (values) => {
       try {
@@ -65,8 +65,7 @@ const RenameChannel = ({ onHide }) => {
                 />
                 <Form.Label className="visually-hidden" htmlFor="name">{t('modal.name')}</Form.Label>
                 {formik.errors.name
-                  && <Form.Control.Feedback type="invalid">{formik.errors.name}</Form.Control.Feedback>
-                }
+                  && <Form.Control.Feedback type="invalid">{formik.errors.name}</Form.Control.Feedback>}
                 <div className="d-flex justify-content-end">
                   <Button type="button" className="me-2" variant="secondary" onClick={onHide}>{t('modal.cancel')}</Button>
                   <Button type="submit" variant="primary">{t('modal.send')}</Button>

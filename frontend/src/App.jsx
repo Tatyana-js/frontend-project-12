@@ -20,15 +20,18 @@ const App = () => {
     <BrowserRouter future={{
       v7_startTransition: true,
       v7_relativeSplatPath: true,
-    }}>
+    }}
+    >
       <div className="d-flex h-100 flex-column">
         <AuthProvider>
           <MainNavbar />
           <Routes>
-            <Route path={router.main()} element={(
-              <PrivateRoute>
-                <MainPage />
-              </PrivateRoute>
+            <Route
+              path={router.main()}
+              element={(
+                <PrivateRoute>
+                  <MainPage />
+                </PrivateRoute>
               )}
             />
             <Route path={router.login()} element={<LoginPage />} />

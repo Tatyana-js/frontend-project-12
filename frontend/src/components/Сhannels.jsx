@@ -19,7 +19,7 @@ const Channels = () => {
   const activeChannel = useSelector(activeChannelSelector);
   const modals = useSelector((state) => state.modals);
 
-  const variant = (channel) => channel.id === activeChannel.id ? "secondary" : "";
+  const variant = (channel) => (channel.id === activeChannel.id ? 'secondary' : '');
 
   const hideModal = () => dispatch(closeModal());
   const showModal = (type, channel) => {
@@ -40,7 +40,7 @@ const Channels = () => {
         <Dropdown.Item role="button" onClick={() => showModal('renaming', channel)}>{t('channels.dropdownButtonRename')}</Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
-    );
+  );
 
   const notRemovableChannel = (channel) => !channel.removable && (
     <Button
@@ -49,8 +49,8 @@ const Channels = () => {
       variant={variant(channel)}
       onClick={() => dispatch(selectActiveTab(channel))}
     >
-    <span className="me-1"># </span>
-      {channel.name}
+      <span className="me-1"># </span>
+        {channel.name}
     </Button>
   );
 
@@ -65,28 +65,28 @@ const Channels = () => {
     }
   }, [activeChannel]);
 
-return (
-  <>
-    <div className="d-flex mt-1 justify-content-between mb-2 ps-4 pe-2 p-4">
-      <b>{t('channels.title')}</b>
-      <ButtonPlus showModal={showModal} channel={activeChannel}/>
+  return (
+    <>
+      <div className="d-flex mt-1 justify-content-between mb-2 ps-4 pe-2 p-4">
+        <b>{t('channels.title')}</b>
+        <ButtonPlus showModal={showModal} channel={activeChannel} />
         {modals.type === 'adding' && (<AddChannel onHide={hideModal} />)}
-    </div>
-    <Nav 
-      as="ul"
-      id="channels-box"
-      className="flex-column nav-pills nav-fill px-2 mb-3 overflow-auto h-100 d-block"
-      ref={channelsRef}
-    >{channels.map((channel) => (
-          <Nav.Item as="li" key={channel.id} className="w-100">
-            {channel.removable ? removableChannel(channel) : notRemovableChannel(channel)}
-          </Nav.Item>
-          )
+      </div>
+      <Nav
+        as="ul"
+        id="channels-box"
+        className="flex-column nav-pills nav-fill px-2 mb-3 overflow-auto h-100 d-block"
+        ref={channelsRef}
+      >
+      {channels.map((channel) => (
+        <Nav.Item as="li" key={channel.id} className="w-100">
+          {channel.removable ? removableChannel(channel) : notRemovableChannel(channel)}
+        </Nav.Item>),
       )}
-      {modals.type === 'removing' && (<RemoveChannel onHide={hideModal} />)}
-      {modals.type === 'renaming' && (<RenameChannel onHide={hideModal} />)}
-    </Nav>
-  </>
+        {modals.type === 'removing' && (<RemoveChannel onHide={hideModal} />)}
+        {modals.type === 'renaming' && (<RenameChannel onHide={hideModal} />)}
+      </Nav>
+    </>
   );
 };
 

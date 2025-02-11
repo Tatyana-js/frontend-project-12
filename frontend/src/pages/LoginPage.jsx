@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { 
-  Container, Row, Col, Card, Form, Button 
+import {
+  Container, Row, Col, Card, Form, Button,
 } from 'react-bootstrap';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
@@ -30,16 +30,16 @@ const LoginPage = () => {
         navigate(router.main());
       } catch (err) {
         formik.setSubmitting(false);
-          if (axios.isAxiosError(err) && err.response.status === 401) {
-          setAuthFailed(true);
-          inputEl.current.select();
-          return;
+        if (axios.isAxiosError(err) && err.response.status === 401) {
+        setAuthFailed(true);
+        inputEl.current.select();
+        return;
         }
-      throw err;
+        throw err;
       }
     },
   });
-  
+
   return (
     <Container fluid className="h-100">
       <Row className="justify-content-center align-content-center h-100">
@@ -69,10 +69,10 @@ const LoginPage = () => {
                   <Form.Group className="form-floating mb-4" controlId="password">
                     <Form.Control
                       type="password"
-                      autoComplete="current-password" 
-                      required 
-                      placeholder={t('loginForm.password')} 
-                      onChange={formik.handleChange} 
+                      autoComplete="current-password"
+                      required
+                      placeholder={t('loginForm.password')}
+                      onChange={formik.handleChange}
                       value={formik.values.password}
                       isInvalid={authFailed}
                     />
@@ -80,9 +80,9 @@ const LoginPage = () => {
                     <Form.Control.Feedback type="invalid" tooltip>
                       {t('loginForm.error')}
                     </Form.Control.Feedback>
-                  </Form.Group>  
-                    <Button type="submit" variant="outline-primary" className="w-100 mb-3">{t('loginForm.title')}</Button>
-                  </fieldset>
+                  </Form.Group>
+                  <Button type="submit" variant="outline-primary" className="w-100 mb-3">{t('loginForm.title')}</Button>
+                </fieldset>
               </Form>
             </Card.Body>
             <Card.Footer className="p-4">

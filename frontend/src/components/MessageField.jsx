@@ -26,18 +26,19 @@ const MessageField = () => {
       <div className="bg-light mb-4 p-3 shadow-sm small">
         <p className="m-0">
           <b>
-            {'# '} 
-            {activeChannel.name}</b>
+            {'# '}
+            {activeChannel.name}
+          </b>
         </p>
         <span className="text-muted">
           {t('countMessages.messages', { count: countMessages })}
         </span>
       </div>
       <div id="messages-box" className="chat-messages overflow-auto px-5" ref={messagesEl}>
-        {messagesOfChannel?.map(({ id, body, username }) => (
-          <div key={id} className="text-break mb-2">
-            <b>{username}</b>
-            {`: ${body}`}
+        {messagesOfChannel?.map((message) => (
+          <div key={message.id} className="text-break mb-2">
+            <b>{message.username}</b>
+            {`: ${message.body}`}
           </div>
         ))}
       </div>

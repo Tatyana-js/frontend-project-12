@@ -28,7 +28,7 @@ const MessageForm = ({ activeChannelId, username, addMessage }) => {
   return (
     <div className="mt-auto px-5 py-3">
       <Form className="py-1 border rounded-2" onSubmit={formik.handleSubmit} noValidate>
-        <Form.Group className="input-group has-validation" >
+        <Form.Group className="input-group has-validation">
           <Form.Control
             name="body"
             required
@@ -57,4 +57,3 @@ const MessageForm = ({ activeChannelId, username, addMessage }) => {
   );
 };
 export default MessageForm;
-  

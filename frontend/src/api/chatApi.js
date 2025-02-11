@@ -30,7 +30,7 @@ export const chatApi = createApi({
       query: ({ name, id }) => ({
         url: `/channels/${id}`,
         method: 'PATCH',
-        body: {name},
+        body: { name },
       }),
       invalidatesTags: ['Channels', 'Messages'],
     }),

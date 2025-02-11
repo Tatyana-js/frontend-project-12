@@ -45,15 +45,15 @@ const init = async () => {
     }));
   });
 
-  socket.on('removeChannel', ({ payload } ) => {
+  socket.on('removeChannel', (payload) => {
     store.dispatch(chatApi.util.updateQueryData('getChannels', undefined, (draft) => {
       draft.filter((channel) => channel.id !== payload);
     }));
   });
 
-  socket.on('renameChannel', ({ payload } ) => {
+  socket.on('renameChannel', (payload) => {
     store.dispatch(chatApi.util.updateQueryData('getChannels', undefined, (draft) => {
-      const channel = draft.find((channel) => channel.id === payload.id);
+      const channel = draft.find((c) => c.id === payload.id);
       channel.name = payload.name;
     }));
   });
@@ -62,7 +62,7 @@ const init = async () => {
     store.dispatch(chatApi.util.updateQueryData('getMessages', undefined, (draft) => {
       draft.push(payload);
     }));
-  }); 
+  });
 
   const rollbarConfig = {
     accessToken: '45c668d145bf4e379844b7f78319daf0',
@@ -80,11 +80,11 @@ const init = async () => {
             <StrictMode>
               <App />
               <ToastContainer />
-            </StrictMode> 
+            </StrictMode>
           </Provider>
         </ErrorBoundary>
       </I18nextProvider>
-    </RollbarProvider>  
+    </RollbarProvider> 
   );
 };
 

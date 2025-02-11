@@ -1,7 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  type: null, 
+  type: null,
   channel: null,
 };
 
