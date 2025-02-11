@@ -1,5 +1,3 @@
-import { exists } from "i18next";
-
 export default {
   translation: {
     loginForm: {
@@ -36,7 +34,7 @@ export default {
         required: 'Required field',
         minMax: '3 to 20 characters',
         notOneOf: 'Must be unique',
-      }
+      },
     },
     countMessages: {
       messages_one: '{{count}} message',
@@ -64,6 +62,6 @@ export default {
       minSymbolForPassword: 'At least 6 characters',
       oneOfPassword: 'Passwords must match',
       existsUser: 'This user already exists',
-    }
-  }
+    },
+  },
 };

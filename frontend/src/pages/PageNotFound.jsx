@@ -6,10 +6,10 @@ const PageNotFound = () => {
 
   return (
     <div className="text-center">
-      <img 
-        src={pageNotFound} 
-        alt={t('pageNotFound')} 
-        className="img-fluid h-25" 
+      <img
+        src={pageNotFound}
+        alt={t('pageNotFound')}
+        className="img-fluid h-25"
       />
       <h1 className="h4 text-muted">{t('errors.pageNotFound')}</h1>
       <p className="text-muted">

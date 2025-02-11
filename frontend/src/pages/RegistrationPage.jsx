@@ -1,10 +1,11 @@
 import { useTranslation } from 'react-i18next';
 import axios from 'axios';
 import { useRef, useState } from 'react';
-import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
+import { 
+  Container, Row, Col, Card, Form, Button 
+} from 'react-bootstrap';
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
-import { toast } from 'react-toastify';
 import avatarRegisration from '../assets/avatarRegistration.jpg';
 import router from '../utils/routes.js';
 import userSchema from '../utils/validate.js';
@@ -25,19 +26,19 @@ const Registration = () => {
     },
     validationSchema: userSchema(t),
     onSubmit: async ({ username, password }, { setSubmitting }) => {
-      try {
-        const { data } = await axios.post(router.signUpPath(), { username, password });
-          auth.logIn(data.token, data.username);
-          navigate(router.main());
-      } catch (err) {
-          setSubmitting(false);
-          if (err.response.status === 409) {
-            setAuthFailed(true);
-            inputEl.current.select(); 
-          }
-          throw err;
+    try {
+      const { data } = await axios.post(router.signUpPath(), { username, password });
+        auth.logIn(data.token, data.username);
+        navigate(router.main());
+    } catch (err) {
+        setSubmitting(false);
+        if (err.response.status === 409) {
+          setAuthFailed(true);
+          inputEl.current.select(); 
         }
-    }
+        throw err;
+      }
+    },
   });
 
   return (
@@ -49,20 +50,21 @@ const Registration = () => {
               <div>
                 <img src={avatarRegisration} className="rounded-circle" alt={t('signUpForm.signUp')} />
               </div>
-              <Form className='w-50' onSubmit={formik.handleSubmit}>
-                <h1 className='text-center mb-4'>{t('signUpForm.signUp')}</h1>
-                <fieldset >
+              <Form className="w-50" onSubmit={formik.handleSubmit}>
+                <h1 className="text-center mb-4">{t('signUpForm.signUp')}</h1>
+                <fieldset>
                   <Form.Group className="form-floating mb-3" controlId="username">
                     <Form.Control
                       autoComplete="username"
-                      name="username" 
-                      required 
-                      placeholder={t('signUpForm.username')} 
+                      name="username"
+                      required
+                      placeholder={t('signUpForm.username')}
                       onChange={formik.handleChange}
                       value={formik.values.username}
                       ref={inputEl}
                       autoFocus
-                      isInvalid={(formik.touched.username && !!formik.errors.username) || authFailed}
+                      isInvalid={(formik.touched.username 
+                        && !!formik.errors.username) || authFailed}
                       onBlur={formik.handleBlur}
                     />
                     <Form.Label>{t('signUpForm.username')}</Form.Label>
@@ -70,16 +72,17 @@ const Registration = () => {
                   </Form.Group>
                   <Form.Group className="form-floating mb-3" controlId="password">
                     <Form.Control
-                      type='password'
+                      type="password"
                       autoComplete="new-password"
-                      aria-describedby='passwordHelpBlock'
-                      name="password" 
-                      required 
-                      placeholder={t('loginForm.password')} 
+                      aria-describedby="passwordHelpBlock"
+                      name="password"
+                      required
+                      placeholder={t('loginForm.password')}
                       onChange={formik.handleChange}
                       value={formik.values.password}
                       ref={inputEl}
-                      isInvalid={(formik.touched.password && !!formik.errors.password) || authFailed}
+                      isInvalid={(formik.touched.password
+                        && !!formik.errors.password) || authFailed}
                       onBlur={formik.handleBlur}
                     />
                     <Form.Label>{t('loginForm.password')}</Form.Label>
@@ -87,16 +90,17 @@ const Registration = () => {
                   </Form.Group>
                   <Form.Group className="form-floating mb-4" controlId="confirmPassword">
                     <Form.Control
-                        type='password'
+                        type="password"
                         autoComplete="new-password"
-                        aria-describedby='passwordHelpBlock'
-                        name="confirmPassword" 
-                        required 
-                        placeholder={t('signUpForm.confirmPassword')} 
+                        aria-describedby="passwordHelpBlock"
+                        name="confirmPassword"
+                        required
+                        placeholder={t('signUpForm.confirmPassword')}
                         onChange={formik.handleChange}
                         value={formik.values.confirmPassword}
                         ref={inputEl}
-                        isInvalid={(formik.touched.confirmPassword && !!formik.errors.confirmPassword) || authFailed}
+                        isInvalid={(formik.touched.confirmPassword
+                          && !!formik.errors.confirmPassword) || authFailed}
                         onBlur={formik.handleBlur}
                       />
                     <Form.Control.Feedback type="invalid" tooltip>
@@ -107,7 +111,7 @@ const Registration = () => {
                   <Button type="submit" variant="outline-primary" className="w-100">{t('signUpForm.signUpButton')}</Button>
                 </fieldset>
               </Form>
-            </Card.Body> 
+            </Card.Body>
           </Card>
         </Col>
       </Row>

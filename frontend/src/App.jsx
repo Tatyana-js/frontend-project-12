@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-toastify/dist/ReactToastify.css';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import  MainNavbar from './components/Navbar.jsx';
+import MainNavbar from './components/Navbar.jsx';
 import PageNotFound from './pages/PageNotFound.jsx';
 import MainPage from './pages/MainPage.jsx';
 import LoginPage from './pages/LoginPage.jsx';
@@ -29,15 +29,15 @@ const App = () => {
               <PrivateRoute>
                 <MainPage />
               </PrivateRoute>
-              )} 
+              )}
             />
             <Route path={router.login()} element={<LoginPage />} />
             <Route path={router.signUp()} element={<Registration />} />
             <Route path="*" element={<PageNotFound />} />
           </Routes>
           <div style={{ display: 'flex', justifyContent: 'flex-end' }}>
-            <button onClick={() => changeLanguage('ru')}>ru</button>
-            <button onClick={() => changeLanguage('en')}>en</button>
+            <button type="button" onClick={() => changeLanguage('ru')}>ru</button>
+            <button type="button" onClick={() => changeLanguage('en')}>en</button>
           </div>
         </AuthProvider>
       </div>

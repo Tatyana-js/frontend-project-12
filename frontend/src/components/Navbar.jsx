@@ -17,8 +17,9 @@ const MainNavbar = () => {
           onClick={logOut}
           to={router.login()}
           type="button"
-          className="btn btn-primary">
-            {t('navBar.button')}
+          className="btn btn-primary"
+        >
+          {t('navBar.button')}
         </Link>
         )}
       </Container>

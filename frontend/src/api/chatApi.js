@@ -3,7 +3,7 @@ import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 export const chatApi = createApi({
   reducerPath: 'chatApi',
   tagTypes: ['Channels', 'Messages'],
-  baseQuery: fetchBaseQuery({ 
+  baseQuery: fetchBaseQuery({
     baseUrl: '/api/v1',
     prepareHeaders: (headers) => {
       const token = localStorage.getItem('token');
@@ -11,14 +11,14 @@ export const chatApi = createApi({
         headers.set('Authorization', `Bearer ${token}`);
       }
       return headers;
-    }
+    },
   }),
   endpoints: (builder) => ({
     getChannels: builder.query({ // Каналы
       query: () => '/channels',
       providesTags: ['Channels'],
     }),
-    addChannel: builder.mutation ({
+    addChannel: builder.mutation({
       query: (channel) => ({
         url: '/channels',
         method: 'POST',
@@ -26,15 +26,15 @@ export const chatApi = createApi({
       }),
       invalidatesTags: ['Channels'],
     }),
-    renameChannel: builder.mutation ({
+    renameChannel: builder.mutation({
       query: ({ name, id }) => ({
         url: `/channels/${id}`,
         method: 'PATCH',
-        body: { name },
+        body: {name},
       }),
       invalidatesTags: ['Channels', 'Messages'],
     }),
-    removeChannel: builder.mutation ({
+    removeChannel: builder.mutation({
       query: (id) => ({
         url: `/channels/${id}`,
         method: 'DELETE',
@@ -45,7 +45,7 @@ export const chatApi = createApi({
       query: () => '/messages',
       providesTags: ['Messages'],
     }),
-    addMessage: builder.mutation ({
+    addMessage: builder.mutation({
       query: (newMessege) => ({
         url: 'messages',
         method: 'POST',
@@ -62,5 +62,5 @@ export const {
   useAddChannelMutation,
   useAddMessageMutation,
   useRenameChannelMutation,
-  useRemoveChannelMutation, 
+  useRemoveChannelMutation,
 } = chatApi;

@@ -1,9 +1,9 @@
 import { Nav, Button, Dropdown } from 'react-bootstrap';
-import { useGetChannelsQuery } from '../api/chatApi.js';
 import { useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import * as filter from 'leo-profanity';
+import { useGetChannelsQuery } from '../api/chatApi.js';
 import { selectActiveTab, activeChannelSelector, defaultChannel } from '../slices/activeChannelSlice.js';
 import ButtonPlus from './ChannelAddButtom.jsx.jsx';
 import AddChannel from './AddModal.jsx';
@@ -21,11 +21,16 @@ const Channels = () => {
 
   const variant = (channel) => channel.id === activeChannel.id ? "secondary" : "";
 
+  const hideModal = () => dispatch(closeModal());
+  const showModal = (type, channel) => {
+    dispatch(openModal({ type, channel }));
+  };
+
   const removableChannel = (channel) => (
-    <Dropdown role="group" className='d-flex btn-group'>
-      <Button className='w-100 rounded-0 text-start text-truncate' variant={variant(channel)} onClick={() => dispatch(selectActiveTab(channel))}>
+    <Dropdown role="group" className="d-flex btn-group">
+      <Button className="w-100 rounded-0 text-start text-truncate" variant={variant(channel)} onClick={() => dispatch(selectActiveTab(channel))}>
         <span className="me-1"># </span>
-        {filter.clean(channel.name)}  
+        {filter.clean(channel.name)}
       </Button>
       <Dropdown.Toggle className="flex-grow-0 dropdown-toggle-split" variant={variant(channel)}>
         <span className="visually-hidden">{t('channels.setupChannel')}</span>
@@ -39,7 +44,7 @@ const Channels = () => {
 
   const notRemovableChannel = (channel) => !channel.removable && (
     <Button
-      type="button" 
+      type="button"
       className="w-100 rounded-0 text-start text-truncate"
       variant={variant(channel)}
       onClick={() => dispatch(selectActiveTab(channel))}
@@ -49,20 +54,15 @@ const Channels = () => {
     </Button>
   );
 
-  const hideModal = () => dispatch(closeModal());
-  const showModal = (type, channel) => {
-    dispatch(openModal({ type, channel }));
-  };
-
-    useEffect(() => {
-      if (activeChannel.id === defaultChannel.id) {
-        channelsRef.current.scrollTo({
-          top: 0,
-          behavior: 'smooth',
-        });
-      } else {
-        channelsRef.current.scrollTop = channelsRef.current.scrollHeight;
-      }
+  useEffect(() => {
+    if (activeChannel.id === defaultChannel.id) {
+      channelsRef.current.scrollTo({
+        top: 0,
+        behavior: 'smooth',
+      });
+    } else {
+      channelsRef.current.scrollTop = channelsRef.current.scrollHeight;
+    }
   }, [activeChannel]);
 
 return (
@@ -73,20 +73,18 @@ return (
         {modals.type === 'adding' && (<AddChannel onHide={hideModal} />)}
     </div>
     <Nav 
-      as="ul" 
-      id="channels-box" 
+      as="ul"
+      id="channels-box"
       className="flex-column nav-pills nav-fill px-2 mb-3 overflow-auto h-100 d-block"
       ref={channelsRef}
-    >{channels.map((channel) => {
-        return (
+    >{channels.map((channel) => (
           <Nav.Item as="li" key={channel.id} className="w-100">
             {channel.removable ? removableChannel(channel) : notRemovableChannel(channel)}
-          </Nav.Item> 
-          );
-        }
-        )}
+          </Nav.Item>
+          )
+      )}
       {modals.type === 'removing' && (<RemoveChannel onHide={hideModal} />)}
-      {modals.type === 'renaming' && (<RenameChannel onHide={hideModal} />)} 
+      {modals.type === 'renaming' && (<RenameChannel onHide={hideModal} />)}
     </Nav>
   </>
   );

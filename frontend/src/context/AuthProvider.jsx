@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
-import  { Navigate } from 'react-router-dom';
-import AuthContext from '../context/index.jsx';
+import { Navigate } from 'react-router-dom';
+import AuthContext from './index.jsx';
 import useAuth from '../hooks/index.jsx';
 
 const AuthProvider = ({ children }) => {
@@ -8,7 +8,7 @@ const AuthProvider = ({ children }) => {
 
   const token = localStorage.getItem('token');
   const username = localStorage.getItem('username');
-  
+
   const logIn = (token, username) => {
     localStorage.setItem('token', token);
     localStorage.setItem('username', username);
@@ -22,14 +22,15 @@ const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
     if (token) {
       setLoggedIn(true);
     }
   }, []);
-  
+
   return (
-    <AuthContext.Provider value={{ loggedIn, logIn, logOut, token, username }}>
+    <AuthContext.Provider value={{
+      loggedIn, logIn, logOut, username 
+    }}>
       {children}
     </AuthContext.Provider>
   );

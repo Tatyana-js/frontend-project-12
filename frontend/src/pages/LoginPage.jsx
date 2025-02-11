@@ -1,7 +1,9 @@
 import axios from 'axios';
 import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Container, Row, Col, Card, Form, Button } from 'react-bootstrap';
+import { 
+  Container, Row, Col, Card, Form, Button 
+} from 'react-bootstrap';
 import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import avatarLogin from '../assets/avatarLogin.jpg';
@@ -10,7 +12,7 @@ import router from '../utils/routes.js';
 
 const LoginPage = () => {
   const auth = useAuth();
-  const { t } = useTranslation(); 
+  const { t } = useTranslation();
   const [authFailed, setAuthFailed] = useState(false);
   const inputEl = useRef(null);
   const navigate = useNavigate();
@@ -22,19 +24,19 @@ const LoginPage = () => {
     },
     onSubmit: async (values) => {
       setAuthFailed(false);
-        try {
-          const res = await axios.post(router.loginPath(), values);
-          auth.logIn(res.data.token, res.data.username);
-          navigate(router.main());
-        } catch (err) {
-          formik.setSubmitting(false);
-            if (axios.isAxiosError(err) && err.response.status === 401) {
-            setAuthFailed(true);
-            inputEl.current.select();
-            return;
-          }
-        throw err;
+      try {
+        const res = await axios.post(router.loginPath(), values);
+        auth.logIn(res.data.token);
+        navigate(router.main());
+      } catch (err) {
+        formik.setSubmitting(false);
+          if (axios.isAxiosError(err) && err.response.status === 401) {
+          setAuthFailed(true);
+          inputEl.current.select();
+          return;
         }
+      throw err;
+      }
     },
   });
   
@@ -49,13 +51,13 @@ const LoginPage = () => {
               </div>
               <Form className="col-12 col-md-6 mt-3 mt-md-0" onSubmit={formik.handleSubmit}>
                 <h1 className="text-center mb-4">{t('loginForm.title')}</h1>
-                <fieldset >
+                <fieldset>
                   <Form.Group className="form-floating mb-3" controlId="username">
-                    <Form.Control 
+                    <Form.Control
                       type="text"
-                      autoComplete="username" 
-                      required 
-                      placeholder={t('loginForm.username')} 
+                      autoComplete="username"
+                      required
+                      placeholder={t('loginForm.username')}
                       onChange={formik.handleChange}
                       value={formik.values.username}
                       isInvalid={authFailed}
@@ -85,8 +87,12 @@ const LoginPage = () => {
             </Card.Body>
             <Card.Footer className="p-4">
               <div className="text-center">
-                <span>{t('loginForm.span')} </span> 
-                <a href="/signup">{t('signUpForm.signUp')}</a>
+                <span>
+                  {t('loginForm.span')}
+                </span>
+                <a href="/signup">
+                  {t('signUpForm.signUp')}
+                </a>
               </div>
             </Card.Footer>
           </Card>
