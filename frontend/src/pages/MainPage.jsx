@@ -12,7 +12,7 @@ const MainPage = () => {
 
   return (
     <Container className="h-100 my-4 overflow-hidden rounded shadow">
-      {isChannelsLoading && ( 
+      {isChannelsLoading && (
         <Spinner animation="border" role="status">
           <span className="visually-hidden">{t('isChannelsLoading')}</span>
         </Spinner>
@@ -23,8 +23,8 @@ const MainPage = () => {
           <Channels />
         </Col>
         <Col className="p-0 h-100">
-        <MessageField />
-      </Col>
+          <MessageField />
+        </Col>
       </Row>
     </Container>
   );

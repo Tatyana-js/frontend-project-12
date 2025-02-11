@@ -42,35 +42,35 @@ const AddChannel = ({ onHide }) => {
   return (
     <>
       <div className="fade modal-backdrop show"></div>
-        <div role="dialog" aria-modal="true" className="fade modal show" tabIndex="-1" style={{ display: 'block' }}>
-          <Modal.Dialog className="modal-dialog-centered">
-            <Modal.Header closeButton onHide={onHide}>
-              <Modal.Title className="h4">{t('modal.addButton')}</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-              <Form onSubmit={formik.handleSubmit}>
-                <FormGroup>
-                  <FormControl
-                    name="name"
-                    className="mb-2"
-                    value={formik.values.name}
-                    onChange={formik.handleChange}
-                    ref={formControlEl}
-                    isInvalid={formik.errors.name}
-                    autoFocus
-                  />
-                  <Form.Label className="visually-hidden" htmlFor="channelName">{t('modal.name')}</Form.Label>
-                  {formik.errors.name
-                    && <Form.Control.Feedback type="invalid">{formik.errors.name}</Form.Control.Feedback>}
-                  <div className="d-flex justify-content-end">
-                    <Button type="button" className="me-2" variant="secondary" onClick={onHide}>{t('modal.cancel')}</Button>
-                    <Button type="submit" variant="primary">{t('modal.send')}</Button>
-                  </div>
-                </FormGroup>
-              </Form>
-            </Modal.Body>
-          </Modal.Dialog>
-        </div>
+      <div role="dialog" aria-modal="true" className="fade modal show" tabIndex="-1" style={{ display: 'block' }}>
+        <Modal.Dialog className="modal-dialog-centered">
+          <Modal.Header closeButton onHide={onHide}>
+            <Modal.Title className="h4">{t('modal.addButton')}</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            <Form onSubmit={formik.handleSubmit}>
+              <FormGroup>
+                <FormControl
+                  name="name"
+                  className="mb-2"
+                  value={formik.values.name}
+                  onChange={formik.handleChange}
+                  ref={formControlEl}
+                  isInvalid={formik.errors.name}
+                  autoFocus
+                />
+                <Form.Label className="visually-hidden" htmlFor="channelName">{t('modal.name')}</Form.Label>
+                {formik.errors.name
+                  && <Form.Control.Feedback type="invalid">{formik.errors.name}</Form.Control.Feedback>}
+                <div className="d-flex justify-content-end">
+                  <Button type="button" className="me-2" variant="secondary" onClick={onHide}>{t('modal.cancel')}</Button>
+                  <Button type="submit" variant="primary">{t('modal.send')}</Button>
+                </div>
+              </FormGroup>
+            </Form>
+          </Modal.Body>
+        </Modal.Dialog>
+      </div>
     </>
   );
 };

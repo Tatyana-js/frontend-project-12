@@ -16,7 +16,7 @@ export default [
     settings: {
       react: {
         version: '18.3',
-      }
+      },
     },
   },
   pluginReact.configs.flat.recommended,

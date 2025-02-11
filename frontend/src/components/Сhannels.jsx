@@ -78,11 +78,12 @@ const Channels = () => {
         className="flex-column nav-pills nav-fill px-2 mb-3 overflow-auto h-100 d-block"
         ref={channelsRef}
       >
-      {channels.map((channel) => (
-        <Nav.Item as="li" key={channel.id} className="w-100">
-          {channel.removable ? removableChannel(channel) : notRemovableChannel(channel)}
-        </Nav.Item>),
-      )}
+        {channels.map((channel) => (
+          <Nav.Item as="li" key={channel.id} className="w-100">
+            {channel.removable ? removableChannel(channel) : notRemovableChannel(channel)}
+          </Nav.Item>
+          ))
+        }
         {modals.type === 'removing' && (<RemoveChannel onHide={hideModal} />)}
         {modals.type === 'renaming' && (<RenameChannel onHide={hideModal} />)}
       </Nav>

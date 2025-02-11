@@ -15,8 +15,8 @@ export default defineConfig({
       '/socket.io': {
         target: 'ws://127.0.0.1:5001',
         ws: true,
-        changeOrigin: true, //устанавливает заголовок Origin к http-запросам
-        rewriteWsOrigin: true, //переписывает заголовок Origin для соединения веб-сокета.
+        changeOrigin: true, // устанавливает заголовок Origin к http-запросам
+        rewriteWsOrigin: true, // переписывает заголовок Origin для соединения веб-сокета.
       },
     },
   },
@@ -35,4 +35,3 @@ export default defineConfig({
     },
   },
 });
-

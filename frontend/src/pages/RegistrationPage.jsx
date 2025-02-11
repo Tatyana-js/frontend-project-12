@@ -28,8 +28,8 @@ const Registration = () => {
     onSubmit: async ({ username, password }, { setSubmitting }) => {
       try {
         const { data } = await axios.post(router.signUpPath(), { username, password });
-          auth.logIn(data.token, data.username);
-          navigate(router.main());
+        auth.logIn(data.token, data.username);
+        navigate(router.main());
       } catch (err) {
         setSubmitting(false);
         if (err.response.status === 409) {
