@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useMemo } from 'react';
 import { Navigate } from 'react-router-dom';
 import AuthContext from './index.jsx';
 import useAuth from '../hooks/index.jsx';
@@ -27,11 +27,16 @@ const AuthProvider = ({ children }) => {
     }
   }, []);
 
+  const value = useMemo(() => ({
+    loggedIn,
+    logIn,
+    logOut,
+    username,
+    token,
+  }), [loggedIn, username, token]);
+
   return (
-    <AuthContext.Provider value={{
-      loggedIn, logIn, logOut, username, token,
-      }}
-    >
+    <AuthContext.Provider value={value}>
       {children}
     </AuthContext.Provider>
   );
