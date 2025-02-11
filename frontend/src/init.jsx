@@ -42,7 +42,7 @@ const init = async () => {
 
     socket.on('newChannel', (payload) => {
       store.dispatch(chatApi.util.updateQueryData('getChannels', undefined, (draft) => {
-        draft.push({ payload });
+        draft.push(payload);
       }));
     });
     socket.on('removeChannel', ({ payload } ) => {

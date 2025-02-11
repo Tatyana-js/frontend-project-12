@@ -85,7 +85,7 @@ return (
           );
         }
         )}
-      {modals.type === 'removing' && (<RemoveChannel onHide={hideModal} show={showModal} />)}
+      {modals.type === 'removing' && (<RemoveChannel onHide={hideModal} />)}
       {modals.type === 'renaming' && (<RenameChannel onHide={hideModal} />)} 
     </Nav>
   </>
