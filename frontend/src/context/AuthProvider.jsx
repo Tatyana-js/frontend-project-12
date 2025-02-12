@@ -8,10 +8,10 @@ const AuthProvider = ({ children }) => {
 
   const token = localStorage.getItem('token');
   const username = localStorage.getItem('username');
-
-  const logIn = (token, username) => {
-    localStorage.setItem('token', token);
-    localStorage.setItem('username', username);
+  
+  const logIn = (userToken, userName) => {
+    localStorage.setItem('token', userToken);
+    localStorage.setItem('username', userName);
     setLoggedIn(true);
   };
 
