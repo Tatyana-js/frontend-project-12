@@ -30,9 +30,6 @@ export default defineConfig({
           if (id.includes('react')) {
             return 'react-vendor';
           }
-          if (id.includes('react-dom')) {
-            return 'react-dom-vendor';
-          }
           if (id.includes('node_modules')) {
             return 'vendor';
           }
