@@ -25,6 +25,7 @@ export default [
       semi: 'error',
       'react/react-in-jsx-scope': 'off',
       'react/prop-types': 'off',
+      'no-param-reassign': 'off',
     },
   },
 ];

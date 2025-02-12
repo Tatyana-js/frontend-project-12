@@ -8,7 +8,7 @@ const AuthProvider = ({ children }) => {
 
   const token = localStorage.getItem('token');
   const username = localStorage.getItem('username');
-  
+
   const logIn = (userToken, userName) => {
     localStorage.setItem('token', userToken);
     localStorage.setItem('username', userName);
@@ -25,7 +25,7 @@ const AuthProvider = ({ children }) => {
     if (token) {
       setLoggedIn(true);
     }
-  }, []);
+  }, [token]);
 
   const value = useMemo(() => ({
     loggedIn,

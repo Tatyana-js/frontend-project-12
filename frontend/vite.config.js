@@ -24,8 +24,14 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks(id) {
-          if (id.includes('bootstrap' || 'index-BwV0OUVV.css')) {
+          if (id.includes('bootstrap' || id.includes('index-BwV0OUVV.css'))) {
             return 'bootstrap';
+          }
+          if (id.includes('react')) {
+            return 'react-vendor';
+          }
+          if (id.includes('react-dom')) {
+            return 'react-dom-vendor';
           }
           if (id.includes('node_modules')) {
             return 'vendor';

@@ -82,7 +82,7 @@ const Channels = () => {
           <Nav.Item as="li" key={channel.id} className="w-100">
             {channel.removable ? removableChannel(channel) : notRemovableChannel(channel)}
           </Nav.Item>
-          ))}
+        ))}
         {modals.type === 'removing' && (<RemoveChannel onHide={hideModal} />)}
         {modals.type === 'renaming' && (<RenameChannel onHide={hideModal} />)}
       </Nav>
