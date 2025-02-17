@@ -74,6 +74,7 @@ const Channels = () => {
           variant="link"
           onClick={() => showModal('adding', activeChannel)}
           size={20}
+          value={t('channels.buttonPlus')}
         />
         {modals.type === 'adding' && (<AddChannel onHide={hideModal} />)}
       </div>
