@@ -3,11 +3,11 @@ import { useRef, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import * as filter from 'leo-profanity';
-import { useGetChannelsQuery } from '../api/chatApi.js';
+import { PlusSquare } from 'react-bootstrap-icons';
+import { useGetChannelsQuery } from '../api/apiChannels.js';
 import { selectActiveTab, activeChannelSelector, defaultChannel } from '../slices/activeChannelSlice.js';
-import ButtonPlus from './ChannelAddButtom.jsx.jsx';
 import AddChannel from './AddModal.jsx';
-import RemoveChannel from './RemoveModel.jsx';
+import RemoveChannel from './RemoveModal.jsx';
 import RenameChannel from './RenameModal.jsx';
 import { closeModal, openModal } from '../slices/modalsSlice';
 
@@ -69,7 +69,12 @@ const Channels = () => {
     <>
       <div className="d-flex mt-1 justify-content-between mb-2 ps-4 pe-2 p-4">
         <b>{t('channels.title')}</b>
-        <ButtonPlus showModal={showModal} channel={activeChannel} />
+        <PlusSquare
+          className="text-primary"
+          variant="link"
+          onClick={() => showModal('adding', activeChannel)}
+          size={20}
+        />
         {modals.type === 'adding' && (<AddChannel onHide={hideModal} />)}
       </div>
       <Nav

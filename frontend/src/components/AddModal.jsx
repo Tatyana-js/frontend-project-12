@@ -7,7 +7,7 @@ import { useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import { toast } from 'react-toastify';
 import { channelSchema } from '../utils/validate.js';
-import { useAddChannelMutation, useGetChannelsQuery } from '../api/chatApi';
+import { useAddChannelMutation, useGetChannelsQuery } from '../api/apiChannels.js';
 import { selectActiveTab } from '../slices/activeChannelSlice.js';
 
 const AddChannel = ({ onHide }) => {

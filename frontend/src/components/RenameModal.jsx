@@ -6,7 +6,7 @@ import { useTranslation } from 'react-i18next';
 import { useFormik } from 'formik';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { useRenameChannelMutation, useGetChannelsQuery } from '../api/chatApi';
+import { useRenameChannelMutation, useGetChannelsQuery } from '../api/apiChannels.js';
 import { channelSchema } from '../utils/validate.js';
 
 const RenameChannel = ({ onHide }) => {
@@ -50,7 +50,7 @@ const RenameChannel = ({ onHide }) => {
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={formik.handleSubmit}>
-          <FormGroup controlId="name">
+          <FormGroup>
             <FormControl
               name="name"
               className="mb-2"

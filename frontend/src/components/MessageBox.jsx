@@ -4,9 +4,9 @@ import { useTranslation } from 'react-i18next';
 import { activeChannelSelector } from '../slices/activeChannelSlice.js';
 import MessageForm from './MessageForm.jsx';
 import useAuth from '../hooks/index.jsx';
-import { useGetMessagesQuery, useAddMessageMutation } from '../api/chatApi.js';
+import { useGetMessagesQuery, useAddMessageMutation } from '../api/apiMessages.js';
 
-const MessageField = () => {
+const MessageBox = () => {
   const { t } = useTranslation();
   const { data: messages = [] } = useGetMessagesQuery();
   const [addMessage] = useAddMessageMutation();
@@ -51,4 +51,4 @@ const MessageField = () => {
   );
 };
 
-export default MessageField;
+export default MessageBox;

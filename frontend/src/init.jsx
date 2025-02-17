@@ -7,11 +7,12 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import * as filter from 'leo-profanity';
 import { io } from 'socket.io-client';
 import { Provider as RollbarProvider, ErrorBoundary } from '@rollbar/react';
-import { chatApi } from './api/chatApi.js';
+import { apiMessages,  } from './api/apiMessages.js';
 import activeChannelReducer from './slices/activeChannelSlice.js';
 import modalsReducer from './slices/modalsSlice.js';
 import App from './App.jsx';
 import resources from './locales/index.js';
+import { apiChannels } from './api/apiChannels.js';
 
 const init = async () => {
   const i18n = i18next.createInstance();
@@ -27,45 +28,46 @@ const init = async () => {
     });
 
   const rootReducer = combineReducers({
-    [chatApi.reducerPath]: chatApi.reducer,
+    [apiChannels.reducerPath]: apiChannels.reducer,
+    [apiMessages.reducerPath]: apiMessages.reducer,
     activeChannel: activeChannelReducer,
     modals: modalsReducer,
   });
 
   const store = configureStore({
     reducer: rootReducer,
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(chatApi.middleware),
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiChannels.middleware, apiMessages.middleware),
   });
 
   const socket = io();
 
   socket.on('newChannel', (payload) => {
-    store.dispatch(chatApi.util.updateQueryData('getChannels', undefined, (draft) => {
+    store.dispatch(apiChannels.util.updateQueryData('getChannels', undefined, (draft) => {
       draft.push(payload);
     }));
   });
 
   socket.on('removeChannel', (payload) => {
-    store.dispatch(chatApi.util.updateQueryData('getChannels', undefined, (draft) => {
+    store.dispatch(apiChannels.util.updateQueryData('getChannels', undefined, (draft) => {
       draft.filter((channel) => channel.id !== payload);
     }));
   });
 
   socket.on('renameChannel', (payload) => {
-    store.dispatch(chatApi.util.updateQueryData('getChannels', undefined, (draft) => {
+    store.dispatch(apiChannels.util.updateQueryData('getChannels', undefined, (draft) => {
       const channel = draft.find((c) => c.id === payload.id);
       channel.name = payload.name;
     }));
   });
 
   socket.on('newMessage', (payload) => {
-    store.dispatch(chatApi.util.updateQueryData('getMessages', undefined, (draft) => {
+    store.dispatch(apiMessages.util.updateQueryData('getMessages', undefined, (draft) => {
       draft.push(payload);
     }));
   });
 
   const rollbarConfig = {
-    accessToken: '45c668d145bf4e379844b7f78319daf0',
+    accessToken: import.meta.env.ACCESS_TOKEN,
     environment: 'production',
   };
 

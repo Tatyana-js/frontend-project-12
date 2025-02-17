@@ -8,7 +8,7 @@ import { useFormik } from 'formik';
 import { useTranslation } from 'react-i18next';
 import avatarLogin from '../assets/avatarLogin.jpg';
 import useAuth from '../hooks/index.jsx';
-import router from '../utils/routes.js';
+import router from '../routes.js';
 
 const LoginPage = () => {
   const auth = useAuth();

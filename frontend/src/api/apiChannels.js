@@ -1,8 +1,8 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-export const chatApi = createApi({
-  reducerPath: 'chatApi',
-  tagTypes: ['Channels', 'Messages'],
+export const apiChannels = createApi({
+  reducerPath: 'apiChannels',
+  tagTypes: ['Channels'],
   baseQuery: fetchBaseQuery({
     baseUrl: '/api/v1',
     prepareHeaders: (headers) => {
@@ -32,35 +32,21 @@ export const chatApi = createApi({
         method: 'PATCH',
         body: { name },
       }),
-      invalidatesTags: ['Channels', 'Messages'],
+      invalidatesTags: ['Channels'],
     }),
     removeChannel: builder.mutation({
       query: (id) => ({
         url: `/channels/${id}`,
         method: 'DELETE',
       }),
-      invalidatesTags: ['Channels', 'Messages'],
-    }),
-    getMessages: builder.query({ // Сообщения
-      query: () => '/messages',
-      providesTags: ['Messages'],
-    }),
-    addMessage: builder.mutation({
-      query: (newMessege) => ({
-        url: 'messages',
-        method: 'POST',
-        body: newMessege,
-      }),
-      invalidatesTags: ['Messages'],
+      invalidatesTags: ['Channels'],
     }),
   }),
 });
 
 export const {
   useGetChannelsQuery,
-  useGetMessagesQuery,
   useAddChannelMutation,
-  useAddMessageMutation,
   useRenameChannelMutation,
   useRemoveChannelMutation,
-} = chatApi;
+} = apiChannels;

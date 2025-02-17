@@ -1,7 +1,7 @@
 {
   "name": "@hexlet/code",
   "version": "1.0.0",
-  "description": "[![Actions Status](https://github.com/Tatyana-js/frontend-project-12/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Tatyana-js/frontend-project-12/actions)",
+  "description": "Chat for real-time communication",
   "main": "index.js",
   "scripts": {
     "build": "npm run build --prefix frontend",
@@ -13,7 +13,7 @@
     "type": "git",
     "url": "git+https://github.com/Tatyana-js/frontend-project-12.git"
   },
-  "author": "",
+  "author": "Tatyana",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/Tatyana-js/frontend-project-12/issues"

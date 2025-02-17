@@ -2,9 +2,9 @@ import {
   Container, Row, Col, Spinner,
 } from 'react-bootstrap';
 import { useTranslation } from 'react-i18next';
-import { useGetChannelsQuery } from '../api/chatApi.js';
+import { useGetChannelsQuery } from '../api/apiChannels.js';
 import Channels from '../components/Сhannels.jsx';
-import MessageField from '../components/MessageField.jsx';
+import MessageBox from '../components/MessageBox.jsx';
 
 const MainPage = () => {
   const { t } = useTranslation();
@@ -23,7 +23,7 @@ const MainPage = () => {
           <Channels />
         </Col>
         <Col className="p-0 h-100">
-          <MessageField />
+          <MessageBox />
         </Col>
       </Row>
     </Container>

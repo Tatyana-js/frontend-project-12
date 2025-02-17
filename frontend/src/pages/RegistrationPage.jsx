@@ -7,7 +7,7 @@ import {
 import { useFormik } from 'formik';
 import { useNavigate } from 'react-router-dom';
 import avatarRegisration from '../assets/avatarRegistration.jpg';
-import router from '../utils/routes.js';
+import router from '../routes.js';
 import userSchema from '../utils/validate.js';
 import useAuth from '../hooks/index.jsx';
 

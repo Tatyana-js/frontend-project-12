@@ -1,7 +1,7 @@
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { Container, Navbar } from 'react-bootstrap';
-import router from '../utils/routes.js';
+import router from '../routes.js';
 import useAuth from '../hooks/index.jsx';
 
 const MainNavbar = () => {
