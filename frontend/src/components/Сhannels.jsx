@@ -69,13 +69,15 @@ const Channels = () => {
     <>
       <div className="d-flex mt-1 justify-content-between mb-2 ps-4 pe-2 p-4">
         <b>{t('channels.title')}</b>
-        <PlusSquare
+        <Button
+          type="button"
           className="text-primary"
           variant="link"
           onClick={() => showModal('adding', activeChannel)}
-          size={20}
-          value={t('channels.buttonPlus')}
-        />
+        >
+          <PlusSquare size={20} />
+          <span className="visually-hidden">+</span>
+        </Button>
         {modals.type === 'adding' && (<AddChannel onHide={hideModal} />)}
       </div>
       <Nav
