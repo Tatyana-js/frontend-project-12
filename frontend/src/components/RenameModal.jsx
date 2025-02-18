@@ -50,7 +50,7 @@ const RenameChannel = ({ onHide }) => {
       </Modal.Header>
       <Modal.Body>
         <Form onSubmit={formik.handleSubmit}>
-          <FormGroup>
+          <FormGroup controlId='name'>
             <FormControl
               name="name"
               className="mb-2"
