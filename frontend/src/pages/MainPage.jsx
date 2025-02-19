@@ -16,12 +16,13 @@ const MainPage = () => {
   }, [channelsError]);
 
   return (
-    isChannelsLoading ? 
-    (<div className="d-flex justify-content-center align-items-center h-100">
+    isChannelsLoading
+    ? (
+      <div className="d-flex justify-content-center align-items-center h-100">
         <Spinner animation="border" role="status" />
-      </div>) 
-      :
-      (<Container className="h-100 my-4 overflow-hidden rounded shadow">
+      </div>
+      ) 
+    : (<Container className="h-100 my-4 overflow-hidden rounded shadow">
         <Row className="h-100 bg-white flex-md-row">
           <Col sx={4} className="col-md-2 border-end px-0 bg-light flex-column h-100 d-flex">
             <Channels />
@@ -30,7 +31,8 @@ const MainPage = () => {
             <MessageBox />
           </Col>
         </Row>
-      </Container>)
+      </Container>
+      )
   );
 };
 
