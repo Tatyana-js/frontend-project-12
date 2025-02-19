@@ -25,18 +25,6 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (id.includes('node_modules')) {
-            if (id.includes('react-toastify')) {
-              return 'toastify';
-            }
-            if (id.includes('bootstrap') || id.includes('react-bootstrap')) {
-              return 'bootstrap';
-            }
-            if (id.includes('i18next')) {
-              return 'i18n';
-            }
-            if (id.includes('formik') || id.includes('yup')) {
-              return 'formik';
-            }
             if (id.includes('rollbar')) {
               return 'rollbar';
             }
