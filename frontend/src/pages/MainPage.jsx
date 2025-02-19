@@ -1,13 +1,11 @@
 import {
   Container, Row, Col, Spinner,
 } from 'react-bootstrap';
-import { useTranslation } from 'react-i18next';
 import { useGetChannelsQuery } from '../api/apiChannels.js';
 import Channels from '../components/Сhannels.jsx';
 import MessageBox from '../components/MessageBox.jsx';
 
 const MainPage = () => {
-  const { t } = useTranslation();
   const { isLoading: isChannelsLoading, error: channelsError } = useGetChannelsQuery();
 
   return (
