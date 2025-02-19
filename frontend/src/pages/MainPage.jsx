@@ -12,16 +12,11 @@ const MainPage = () => {
 
   return (
     <div className="d-flex justify-content-center align-items-center vh-100">
-      {isChannelsLoading && (
-        <Spinner animation="border" role="status">
-          <span className="visually-hidden">{t('isChannelsLoading')}</span>
-        </Spinner>
-      )}
-      {channelsError && console.error(channelsError)}      
+      {isChannelsLoading && <Spinner animation="border" role="status" />}
+      {channelsError && console.error(channelsError)}
       <Container className="h-100 my-4 overflow-hidden rounded shadow">
         <Row className="h-100 bg-white flex-md-row">
           <Col sx={4} className="col-md-2 border-end px-0 bg-light flex-column h-100 d-flex">
-          
             <Channels />
           </Col>
           <Col className="p-0 h-100">

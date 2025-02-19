@@ -41,7 +41,6 @@ const MessageForm = ({ activeChannelId, username, addMessage }) => {
             onChange={formik.handleChange}
             autoFocus
           />
-          
           <Button
             type="submit"
             disabled={!formik.values.body}

@@ -7,7 +7,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import * as filter from 'leo-profanity';
 import { io } from 'socket.io-client';
 import { Provider as RollbarProvider, ErrorBoundary } from '@rollbar/react';
-import { apiMessages,  } from './api/apiMessages.js';
+import { apiMessages } from './api/apiMessages.js';
 import activeChannelReducer from './slices/activeChannelSlice.js';
 import modalsReducer from './slices/modalsSlice.js';
 import App from './App.jsx';
@@ -36,7 +36,8 @@ const init = async () => {
 
   const store = configureStore({
     reducer: rootReducer,
-    middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(apiChannels.middleware, apiMessages.middleware),
+    middleware: (getDefaultMiddleware) => getDefaultMiddleware()
+      .concat(apiChannels.middleware, apiMessages.middleware),
   });
 
   const socket = io();
