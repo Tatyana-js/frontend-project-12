@@ -25,9 +25,12 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (id.includes('node_modules')) {
-            if (id.includes('react-dom')) {
-              return 'react-dom';
+            if (id.includes('react')) {
+              return 'react'; // добавьте react в отдельный чанк
             }
+            // if (id.includes('react-dom')) {
+            //   return 'react-dom';
+            // }
             if (id.includes('rollbar')) {
               return 'rollbar';
             }
